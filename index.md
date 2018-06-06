@@ -1,4 +1,5 @@
 ﻿## Welcome to GitHub Pages
+## 为什么不能写中文？
 
 You can or not use the [editor on GitHub](https://github.com/skl666/skl666.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
 

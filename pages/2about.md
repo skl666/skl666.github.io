@@ -15,7 +15,7 @@ icon: glyphicon-heart
 
 * email：[1131198780@qq.com](mailto:{{ site.email }})
 * QQ：1131198780
-* ---
+ ---
 
 ### 关于本站   
 
@@ -34,7 +34,7 @@ icon: glyphicon-heart
 
 ---
 
-#### 友情链接 [Anotherhome](https://www.anotherhome.net) \| [Reverland](http://reverland.org/) \
+#### 友情链接 [skl](https://skl666.github.io/) \| [lks](http://skl666.github.io/) \
 
 Comment below to exchange link with me.  
 

@@ -1,0 +1,27 @@
+/*样式准备第一步：重新定义部分html标签的样式*/
+body,div,a,img,h1,h2,h3,h4,h5,p,ol,ul,li,dl,dt,dd{margin: 0px;padding: 0px;
+    list-style: none;border: none;}
+/*样式准备第二步：定义body部分默认样式*/
+body{font-size: 12px;font-family: "宋体";color: #616161;}
+/*样式准备第三步：定义a的默认样式*/
+a{color: #999;text-decoration: none;}
+a :hover{text-decoration: underline;}
+/*样式准备第四步：为旧版本浏览器格式化html5元素*/
+article,aside,dialog,footer,header,section,footer,nav,figure,menu{display: block;}
+
+
+.pinglun{width: 500px;height: auto;border: 1px solid red;position: relative;}
+.title{width: 500px;height: 30px;}
+.title ul{}
+.title ul li{font-size: 15px;padding-top:5px;text-align: center;width: 80px;height:25px;float: left;background-color:lightyellow;border-right:1px solid red;}
+
+.goods{width: 500px;height: 600px;border: 1px solid red;position: absolute;left: -1px;top: 30px;}
+
+.goodspl{display:none;width: 500px;height:auto;border: 1px solid red;position: absolute;left:-1px;top:30px;}
+.past{width: 500px;height:auto;}
+.past ul{background-color:lightyellow;}
+.past ul li{border-bottom:1px solid red;height:auto;}
+
+.now{width: 500px;height:200px;}
+.nowstar div{}
+.sca{font-size: 15px;color: blueviolet}

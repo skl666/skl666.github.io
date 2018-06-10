@@ -25,6 +25,7 @@ $(function(){
 
         var stre=$("<li class='ting'><div>"+str+"</div><div>"+texte+"</div><div>***(匿名)</div><br><a class='sca'>删除评价</a></li>");
         $(".past ul").append(stre);
+over();
         $(".sca").on("click",function(){
             $(this).parents(".ting").remove();
     })
@@ -41,6 +42,10 @@ $(".nowstar div img").each(function(index){
         strs=index;
     })
 })
+function over(){
+	 var sou=document.getElementById("tjtext");
+	 sou.value="请输入评论";
+}
 function focussou(){
             var sou=document.getElementById("tjtext");
             if(sou.value=="请输入评论"){

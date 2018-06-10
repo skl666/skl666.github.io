@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Created by Administrator on 2018/6/9.
  */
 $(function(){
@@ -12,7 +12,6 @@ $(function(){
     })
     
     $("#pltj").bind("click",function(){
-    	over();
         var texte=$("#tjtext").val();
         var str="";
         for(var i=0;i<5;i++){
@@ -42,11 +41,6 @@ $(".nowstar div img").each(function(index){
         strs=index;
     })
 })
-
-function over(){
-	 var sou=document.getElementById("tjtext");
-	 sou.value="请输入评论";
-}
 function focussou(){
             var sou=document.getElementById("tjtext");
             if(sou.value=="请输入评论"){

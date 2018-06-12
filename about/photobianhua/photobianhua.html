@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>图片顺变</title>
+    <style type="text/css">
+        body div div{display:inline-block;overflow: hidden;position: relative;}
+        body div div img{position: absolute;}
+    </style>
+    <script type="text/javascript">
+        var i=10;
+        var k=60;
+        time=setInterval("zp()",1);
+        function zp(){
+            for(var j=1;j<33;j++) {
+                document.getElementById("div"+j).style.width = i+ "px";
+                document.getElementById("div"+j).style.height = k+ "px";
+                document.getElementById("img"+j).style.width = i + "px";
+                document.getElementById("img"+j).style.height = k+ "px";
+
+            }
+            i=i+2;
+            k=k+2;
+            if(i>163){
+                clearInterval(time);
+            }
+        }
+        function on(x){
+            document.getElementById("div"+x).style.maxWidth = i+ "px";
+            document.getElementById("div"+x).style.maxHeight = k+ "px";
+            document.getElementById("img"+x).style.width= i+10+ "px";
+            document.getElementById("img"+x).style.height= k+10+ "px";
+            document.getElementById("img"+x).style.left = "-5px";
+            document.getElementById("img"+x).style.top = "-5px";
+
+        }
+        function out(x){
+            document.getElementById("div"+x).style.maxWidth = i+ "px";
+            document.getElementById("div"+x).style.maxHeight = k+ "px";
+            document.getElementById("img"+x).style.width = i+"px";
+            document.getElementById("img"+x).style.height = k+"px";
+            document.getElementById("img"+x).style.left = "0px";
+            document.getElementById("img"+x).style.top = "0px";
+        }
+    </script>
+
+</head>
+<body>
+<div id="div0">
+    <div id="div1" onmouseover="on(1)"onmouseout="out(1)"><img id="img1"onclick="cxy()" src="photo/img0.png"></div>
+    <div id="div2"onmouseover="on(2)"onmouseout="out(2)"><img id="img2" src="photo/img1.png"></div>
+    <div id="div3"onmouseover="on(3)"onmouseout="out(3)"><img id="img3" src="photo/img2.png"></div>
+    <div id="div4"onmouseover="on(4)"onmouseout="out(4)"><img id="img4" src="photo/img3.png"></div>
+    <div id="div5"onmouseover="on(5)"onmouseout="out(5)"><img id="img5" src="photo/img4.png"></div>
+    <div id="div6"onmouseover="on(6)"onmouseout="out(6)"><img id="img6" src="photo/img5.png"></div>
+    <div id="div7"onmouseover="on(7)"onmouseout="out(7)"><img id="img7" src="photo/img6.png"></div>
+    <div id="div8"onmouseover="on(8)"onmouseout="out(8)"><img id="img8" src="photo/img7.png"></div>
+    <div id="div9"onmouseover="on(9)"onmouseout="out(9)"><img id="img9" src="photo/img8.png"></div>
+    <div id="div10"onmouseover="on(10)"onmouseout="out(10)"><img id="img10" src="photo/img9.png"></div>
+    <div id="div11"onmouseover="on(11)"onmouseout="out(11)"><img id="img11" src="photo/img10.png"></div>
+    <div id="div12"onmouseover="on(12)"onmouseout="out(12)"><img id="img12" src="photo/img11.png"></div>
+    <div id="div13"onmouseover="on(13)"onmouseout="out(13)"><img id="img13" src="photo/img12.png"></div>
+    <div id="div14"onmouseover="on(14)"onmouseout="out(14)"><img id="img14" src="photo/img13.png"></div>
+    <div id="div15"onmouseover="on(15)"onmouseout="out(15)"><img id="img15" src="photo/img14.png"></div>
+    <div id="div16"onmouseover="on(16)"onmouseout="out(16)"><img id="img16" src="photo/img1.png"></div>
+    <div id="div17"onmouseover="on(17)"onmouseout="out(17)"><img id="img17" src="photo/img2.png"></div>
+    <div id="div18"onmouseover="on(18)"onmouseout="out(18)"><img id="img18" src="photo/img3.png"></div>
+    <div id="div19"onmouseover="on(19)"onmouseout="out(19)"><img id="img19" src="photo/img4.png"></div>
+    <div id="div20"onmouseover="on(20)"onmouseout="out(20)"><img id="img20" src="photo/img5.png"></div>
+    <div id="div21"onmouseover="on(21)"onmouseout="out(21)"><img id="img21" src="photo/img6.png"></div>
+    <div id="div22"onmouseover="on(22)"onmouseout="out(22)"><img id="img22" src="photo/img7.png"></div>
+    <div id="div23"onmouseover="on(23)"onmouseout="out(23)"><img id="img23" src="photo/img8.png"></div>
+    <div id="div24"onmouseover="on(24)"onmouseout="out(24)"><img id="img24" src="photo/img9.png"></div>
+    <div id="div25"onmouseover="on(25)"onmouseout="out(25)"><img id="img25" src="photo/img10.png"></div>
+    <div id="div26"onmouseover="on(26)"onmouseout="out(26)"><img id="img26" src="photo/img11.png"></div>
+    <div id="div27"onmouseover="on(27)"onmouseout="out(27)"><img id="img27" src="photo/img12.png"></div>
+    <div id="div28"onmouseover="on(28)"onmouseout="out(28)"><img id="img28" src="photo/img13.png"></div>
+    <div id="div29"onmouseover="on(29)"onmouseout="out(29)"><img id="img29" src="photo/img14.png"></div>
+    <div id="div30"onmouseover="on(30)"onmouseout="out(30)"><img id="img30" src="photo/img0.png"></div>
+    <div id="div31"onmouseover="on(31)"onmouseout="out(31)"><img id="img31" src="photo/img1.png"></div>
+    <div id="div32"onmouseover="on(32)"onmouseout="out(32)"><img id="img32" src="photo/img2.png"></div>
+</div>
+</body>
+</html>

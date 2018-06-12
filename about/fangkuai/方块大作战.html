@@ -1,0 +1,643 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>方块大作战</title>
+    <script type="text/javascript" src="../../assets/js/jquery-1.11.3.js"></script>
+    <script type="text/javascript">
+//      创建数组1和数组2，用于设置小方块的初始横坐标
+        var ass=new Array(470);
+        var ass2=new Array();
+//        给数组1挨个赋值
+        for(var iii=0;iii<470;iii++) {
+            ass[iii] = iii;
+        }
+//        设置for循环次数，即填入数组2的数值个数
+        for(var jj=0;jj<7;jj++) {
+//出现随机数并作为数组1下标h，并获取 h下标的 数组1的值，然后 for循环 顺序加入数组2
+            var ram2=Math.ceil(Math.random()*469);
+            var xx=ass[ram2];
+            ass2.push(xx);
+        }
+//        创建数组3和数组4，用于设置小方块的初始纵坐标
+        var ast=new Array(470);
+        var ast2=new Array();
+//        给数组3挨个赋值
+        for(var ii=0;ii<470;ii++) {
+            ast[ii] = ii;
+        }
+//        设置for循环次数，即填入数组4的数值个数
+        for(var jj=0;jj<7;jj++) {
+            var ram3=Math.ceil(Math.random()*469);
+            var xt=ast[ram3];
+            ast2.push(xt);
+        }
+        function sd(){
+        document.getElementById("pp0").style.left = ass2[0] + "px";
+        document.getElementById("pp1").style.left = ass2[1] + "px";
+        document.getElementById("pp2").style.left = ass2[2] + "px";
+        document.getElementById("pp3").style.left = ass2[3] + "px";
+        document.getElementById("pp4").style.left = ass2[4] + "px";
+        document.getElementById("pp5").style.left = ass2[5] + "px";
+        document.getElementById("pp6").style.left = ass2[6] + "px";
+        document.getElementById("pp0").style.top = ast2[0] + "px";
+        document.getElementById("pp1").style.top = ast2[1] + "px";
+        document.getElementById("pp2").style.top = ast2[2]+ "px";
+        document.getElementById("pp3").style.top = ast2[3] + "px";
+        document.getElementById("pp4").style.top = ast2[4] + "px";
+        document.getElementById("pp5").style.top = ast2[5]+ "px";
+        document.getElementById("pp6").style.top = ast2[6]+ "px";
+        }
+//        声明玩家1初始位置,全局变量
+        var x=0;
+        var y=0;
+//        玩家1按键赋值
+        $(document).keydown(function(event){
+            if(event.keyCode=="37"){
+                x=x-4;
+//                alert(x);
+//                alert(y);
+                ss();
+                st();
+            }
+        });
+        $(document).keydown(function(event){
+            if(event.keyCode=="39"){
+                x=x+4;
+//                alert(x);
+//                alert(y);
+                ss();
+                st();
+            }
+        });
+        $(document).keydown(function(event){
+            if(event.keyCode=="38"){
+                y=y-4;
+//                alert(x);
+//                alert(y);
+                ss();
+                st();
+            }
+        });
+        $(document).keydown(function(event){
+            if(event.keyCode=="40"){
+                y=y+4;
+//                alert(x);
+//                alert(y);
+                ss();
+                st();
+            }
+        });
+//        声明玩家2初始位置,全局变量
+        var n=0;
+        var m=480;
+//        玩家2按键赋值
+        $(document).keydown(function(event){
+            if(event.keyCode=="65"){
+                n=n-4;
+                ss1();
+                st1();
+            }
+        });
+        $(document).keydown(function(event){
+            if(event.keyCode=="68"){
+                n=n+4;
+
+                ss1();
+                st1();
+            }
+        });
+        $(document).keydown(function(event){
+            if(event.keyCode=="87"){
+                m=m-4;
+
+                ss1();
+                st1();
+            }
+        });
+        $(document).keydown(function(event){
+            if(event.keyCode=="83"){
+                m=m+4;
+                ss1();
+                st1();
+            }
+        });
+//        玩家1控制方向移动显示结果
+        function ss() {
+            document.getElementById("z3").style.left = x + "px";
+            document.getElementById("z3").style.top = y + "px";
+        }
+//        玩家2控制方向移动显示结果
+        function ss1() {
+            document.getElementById("zz3").style.left = n + "px";
+            document.getElementById("zz3").style.top = m + "px";
+        }
+//        玩家1和玩家2吃块次数，全局变量
+        var i=0;
+        var z=0;
+//        为玩家吃小方块设置全局变量，防止玩家1吃过该球玩家2重复吃该球（内嵌有if语句）
+        var q0=0;var q1=0;var q2=0;var q3=0;var q4=0;var q5=0;var q6=0;
+//         为玩家吃玩家设置全局变量，锁定吃球瞬间的吃球判断方法
+        var skl=1;
+//为玩家游戏结果设置全局变量，主要用于解决玩家1出局后显示2玩家胜利 玩家2再出局继而显示玩家1胜利这个问题
+        var sdf=1;
+//        玩家1吃块过程
+        function st() {
+//            用于判定玩家1吃小球
+            if (x<=ass2[0]&&x>=ass2[0]-20*(i+1)+10&&y<=ast2[0]&&y>=ast2[0]-20*(i+1)+10){
+                q0++;
+                if(q0<2){
+                i++;
+                document.getElementById("z3").style.width = 20*(i+1) + "px";
+                document.getElementById("z3").style.height = 20*(i+1)+ "px";
+                document.getElementById("pp0").style.display = "none";
+                document.getElementById("wj1").innerHTML=i*100;
+                document.getElementById("z3").style.backgroundColor="limegreen";
+
+                }
+            }
+            if (x<=ass2[1]&&x>=ass2[1]-20*(i+1)+10&&y<=ast2[1]&&y>=ast2[1]-20*(i+1)+10) {
+                q1++;
+                if(q1<2){
+                i++;
+                document.getElementById("z3").style.width =20*(i+1)+"px";
+                document.getElementById("z3").style.height =20*(i+1)+"px";
+                document.getElementById("pp1").style.display = "none";
+                document.getElementById("wj1").innerHTML=i*100;
+                document.getElementById("z3").style.backgroundColor="mediumblue";
+            }}
+            if (x<=ass2[2]&&x>=ass2[2]-20*(i+1)+10&&y<=ast2[2]&&y>=ast2[2]-20*(i+1)+10) {
+                q2++;
+                if(q2<2){
+                i++;
+                document.getElementById("z3").style.width =20*(i+1) + "px";
+                document.getElementById("z3").style.height =20*(i+1)+ "px";
+                document.getElementById("pp2").style.display = "none";
+                document.getElementById("wj1").innerHTML=i*100;
+                document.getElementById("z3").style.backgroundColor="yellow";
+            }}
+            if (x<=ass2[3]&&x>=ass2[3]-20*(i+1)+10&&y<=ast2[3]&&y>=ast2[3]-20*(i+1)+10) {
+                q3++;
+                if(q3<2){
+                i++;
+                document.getElementById("z3").style.width = 20*(i+1)+"px";
+                document.getElementById("z3").style.height =20*(i+1)+"px";
+                document.getElementById("pp3").style.display = "none";
+                document.getElementById("wj1").innerHTML=i*100;
+                document.getElementById("z3").style.backgroundColor="deeppink";
+            }}
+            if (x<=ass2[4]&&x>=ass2[4]-20*(i+1)+10&&y<=ast2[4]&&y>=ast2[4]-20*(i+1)+10) {
+                q4++;
+                if(q4<2){
+                i++;
+                document.getElementById("z3").style.width = 20*(i+1)+ "px";
+                document.getElementById("z3").style.height = 20*(i+1) + "px";
+                document.getElementById("pp4").style.display = "none";
+                document.getElementById("wj1").innerHTML=i*100;
+                document.getElementById("z3").style.backgroundColor="black";
+            }}
+            if (x<=ass2[5]&&x>=ass2[5]-20*(i+1)+10&&y<=ast2[5]&&y>=ast2[5]-20*(i+1)+10) {
+                q5++;
+                if(q5<2){
+                i++;
+                document.getElementById("z3").style.width = 20*(i+1)+"px";
+                document.getElementById("z3").style.height =20*(i+1)+"px";
+                document.getElementById("pp5").style.display = "none";
+                document.getElementById("wj1").innerHTML=i*100;
+                document.getElementById("z3").style.backgroundColor="orangered";
+            }}
+            if (x<=ass2[6]&&x>=ass2[6]-20*(i+1)+10&&y<=ast2[6]&&y>=ast2[6]-20*(i+1)+10) {
+                q6++;
+                if(q6<2){
+                    i++;
+                    document.getElementById("z3").style.width = 20*(i+1)+"px";
+                    document.getElementById("z3").style.height =20*(i+1)+"px";
+                    document.getElementById("pp6").style.display = "none";
+                    document.getElementById("wj1").innerHTML=i*100;
+                    document.getElementById("z3").style.backgroundColor="sandybrown";
+                }}
+//            用于判定玩家1出游戏边界
+            if(x+20*(i+1)>500||x<0||y+20*(i+1)>500||y<0){
+                document.getElementById("z3").style.width = "0px";
+                document.getElementById("z3").style.height ="0px";
+                document.getElementById("wj1").innerHTML=i*100;
+                document.getElementById("wanjia1").innerText="gameover1";
+                if(sdf<2){
+                    sdf++;
+                    document.getElementById("zzjg").innerText = "玩家2获胜";
+                }
+            }
+//            判定玩家1与玩家2重合时吃球的过程（因全局变量skl原因，所以互吃判断只能一方进行 另一方立即锁定，防止参数变化结果加倍）
+            if(skl<2){
+                if (x > n && y > m && x + 20 * (i + 1) <= n + 20 * (z + 1) && y + 20 * (i + 1) <= m + 20 * (z + 1)) {
+                    skl++;
+                    z = z + i;
+                    document.getElementById("z3").style.display = "none";
+                    document.getElementById("zz3").style.width = 20 *(z+1) + "px";
+                    document.getElementById("zz3").style.height = 20 *(z+1) + "px";
+                    document.getElementById("wj2").innerHTML = z * 100;
+                    if(sdf<2) {
+                        sdf++;
+                        document.getElementById("zzjg").innerHTML = "玩家2获胜";
+                    }
+                    document.getElementById("wanjia1").innerText = "gameover1";
+                }
+                if (x > n && y == m && x + 20 * (i + 1) <= n + 20 * (z + 1)) {
+                    skl++;
+                    z = z + i;
+                    document.getElementById("z3").style.display = "none";
+                    document.getElementById("zz3").style.width = 20 *(z+1) + "px";
+                    document.getElementById("zz3").style.height = 20 *(z+1) + "px";
+                    document.getElementById("wj2").innerHTML = z * 100;
+                    if(sdf<2) {
+                        sdf++;
+                        document.getElementById("zzjg").innerHTML = "玩家2获胜";
+                    }
+                    document.getElementById("wanjia1").innerText = "gameover1";
+                }
+                if (x > n && y < m) {}
+                if (x == n && y > m && y + 20 * (i + 1) <= m + 20 * (z + 1)) {
+                    skl++;
+                    z = z + i;
+                    document.getElementById("z3").style.display = "none";
+                    document.getElementById("zz3").style.width = 20 *(z+1) + "px";
+                    document.getElementById("zz3").style.height = 20 *(z+1) + "px";
+                    document.getElementById("wj2").innerHTML = z * 100;
+                    if(sdf<2) {
+                        sdf++;
+                        document.getElementById("zzjg").innerHTML = "玩家2获胜";
+
+                    }
+                    document.getElementById("wanjia1").innerText = "gameover1";
+                }
+                if (x == n && y == m) {
+                    if (x + 20 * (i + 1) > n + 20 * (z + 1) && y + 20 * (i + 1) > m + 20 * (z + 1)) {
+                        skl++;
+                        i = i + z;
+                        document.getElementById("zz3").style.display = "none";
+                        document.getElementById("z3").style.width = 20*(i+1) + "px";
+                        document.getElementById("z3").style.height = 20*(i+1)+ "px";
+                        document.getElementById("wj1").innerHTML=i*100;
+                        if(sdf<2) {
+                            sdf++;
+                            document.getElementById("zzjg").innerHTML = "玩家1获胜";
+                        }
+                        document.getElementById("wanjia2").innerText = "gameover2";
+                    }
+                    if (x + 20 * (i + 1) == n + 20 * (z + 1) && y + 20 * (i + 1) == m + 20 * (z + 1)) {}
+                    if (x + 20 * (i + 1) < n + 20 * (z + 1) && y + 20 * (i + 1) < m + 20 * (z + 1)) {
+                        skl++;
+                        z = z + i;
+                        document.getElementById("z3").style.display = "none";
+                        document.getElementById("zz3").style.width = 20 *(z+1) + "px";
+                        document.getElementById("zz3").style.height = 20 *(z+1) + "px";
+                        document.getElementById("wj2").innerHTML = z * 100;
+                        if(sdf<2) {
+                            sdf++;
+                            document.getElementById("zzjg").innerHTML = "玩家2获胜";
+                        }
+                        document.getElementById("wanjia1").innerText = "gameover1";
+                    }
+                }
+                if (x == n && y < m && y + 20 * (i + 1) >= m + 20 * (z + 1)) {
+                    skl++;
+                    i = i + z;
+                    document.getElementById("zz3").style.display = "none";
+                    document.getElementById("z3").style.width = 20*(i+1) + "px";
+                    document.getElementById("z3").style.height = 20*(i+1)+ "px";
+                    document.getElementById("wj1").innerHTML=i*100;
+                    if(sdf<2) {
+                        sdf++;
+                        document.getElementById("zzjg").innerHTML = "玩家1获胜";
+                    }
+                    document.getElementById("wanjia2").innerText = "gameover2";
+                }
+                if (x < n && y > m) {}
+                if (x < n && y == m && x + 20 * (i + 1) >= n + 20 * (z + 1)) {
+                    skl++;
+                    i = i + z;
+                    document.getElementById("zz3").style.display = "none";
+                    document.getElementById("z3").style.width = 20*(i+1) + "px";
+                    document.getElementById("z3").style.height = 20*(i+1)+ "px";
+                    document.getElementById("wj1").innerHTML=i*100;
+                    if(sdf<2) {
+                        sdf++;
+                        document.getElementById("zzjg").innerHTML = "玩家1获胜";
+                    }
+                    document.getElementById("wanjia2").innerText = "gameover2";
+                }
+                if (x < n && y < m && x + 20 * (i + 1) >= n + 20 * (z + 1) && y + 20 * (i + 1) >= m + 20 * (z + 1)) {
+                    skl++;
+                    i = i + z;
+                    document.getElementById("zz3").style.display = "none";
+                    document.getElementById("z3").style.width = 20*(i+1) + "px";
+                    document.getElementById("z3").style.height = 20*(i+1)+ "px";
+                    document.getElementById("wj1").innerHTML=i*100;
+                    if(sdf<2) {
+                        sdf++;
+                        document.getElementById("zzjg").innerHTML = "玩家1获胜";
+                    }
+                    document.getElementById("wanjia2").innerText = "gameover2";
+                }
+            }
+        }
+//        玩家2吃块过程
+        function st1() {
+//            用于判定玩家2吃小球
+            if (n<=ass2[0]&&n>=ass2[0]-20*(z+1)+10&&m<=ast2[0]&&m>=ast2[0]-20*(z+1)+10) {
+                q0++;
+                if (q0 < 2) {
+                    z++;
+                    document.getElementById("zz3").style.width = 20 *(z+1) + "px";
+                    document.getElementById("zz3").style.height = 20 *(z+1) + "px";
+                    document.getElementById("pp0").style.display = "none";
+                    document.getElementById("wj2").innerHTML = z * 100;
+                    document.getElementById("zz3").style.backgroundColor="limegreen";
+                }
+            }
+            if (n<=ass2[1]&&n>=ass2[1]-20*(z+1)+10&&m<=ast2[1]&&m>=ast2[1]-20*(z+1)+10) {
+                q1++;
+                if (q1 < 2) {
+                    z++;
+                    document.getElementById("zz3").style.width = 20 *(z+1) + "px";
+                    document.getElementById("zz3").style.height = 20 *(z+1) + "px";
+                    document.getElementById("pp1").style.display = "none";
+                    document.getElementById("wj2").innerHTML = z * 100;
+                    document.getElementById("zz3").style.backgroundColor="mediumblue";
+                }
+            }
+            if (n<=ass2[2]&&n>=ass2[2]-20*(z+1)+10&&m<=ast2[2]&&m>=ast2[2]-20*(z+1)+10) {
+                q2++;
+                if (q2 < 2) {
+                    z++;
+                    document.getElementById("zz3").style.width = 20 *(z+1) + "px";
+                    document.getElementById("zz3").style.height = 20 *(z+1) + "px";
+                    document.getElementById("pp2").style.display = "none";
+                    document.getElementById("wj2").innerHTML = z * 100;
+                    document.getElementById("zz3").style.backgroundColor="yellow";
+                }
+            }
+            if (n<=ass2[3]&&n>=ass2[3]-20*(z+1)+10&&m<=ast2[3]&&m>=ast2[3]-20*(z+1)+10) {
+                q3++;
+                if (q3 < 2) {
+                    z++;
+                    document.getElementById("zz3").style.width = 20 *(z+1)+ "px";
+                    document.getElementById("zz3").style.height = 20 *(z+1) + "px";
+                    document.getElementById("pp3").style.display = "none";
+                    document.getElementById("wj2").innerHTML = z * 100;
+                    document.getElementById("zz3").style.backgroundColor="deeppink";
+                }
+            }
+            if (n<=ass2[4]&&n>=ass2[4]-20*(z+1)+10&&m<=ast2[4]&&m>=ast2[4]-20*(z+1)+10) {
+                q4++;
+                if (q4 < 2) {
+                    z++;
+                    document.getElementById("zz3").style.width = 20 *(z+1) + "px";
+                    document.getElementById("zz3").style.height = 20 *(z+1) + "px";
+                    document.getElementById("pp4").style.display = "none";
+                    document.getElementById("wj2").innerHTML = z * 100;
+                    document.getElementById("zz3").style.backgroundColor="black";
+                }
+            }
+            if (n<=ass2[5]&&n>=ass2[5]-20*(z+1)+10&&m<=ast2[5]&&m>=ast2[5]-20*(z+1)+10) {
+                q5++;
+                if (q5 < 2) {
+                    z++;
+                    document.getElementById("zz3").style.width = 20 *(z+1) + "px";
+                    document.getElementById("zz3").style.height = 20 *(z+1)+ "px";
+                    document.getElementById("pp5").style.display = "none";
+                    document.getElementById("wj2").innerHTML = z * 100;
+                    document.getElementById("zz3").style.backgroundColor="orangered";
+                }
+            }
+            if (n<=ass2[6]&&n>=ass2[6]-20*(z+1)+10&&m<=ast2[6]&&m>=ast2[6]-20*(z+1)+10) {
+                q6++;
+                if (q6 < 2) {
+                    z++;
+                    document.getElementById("zz3").style.width = 20 *(z+1) + "px";
+                    document.getElementById("zz3").style.height = 20 *(z+1)+ "px";
+                    document.getElementById("pp6").style.display = "none";
+                    document.getElementById("wj2").innerHTML = z * 100;
+                    document.getElementById("zz3").style.backgroundColor="sandybrown";
+                }
+            }
+//            用于判定玩家2出游戏边界
+            if (n +20*(z+1)> 500 || n < 0 || m +20*(z+1)> 500 || m < 0) {
+                document.getElementById("zz3").style.width = "0px";
+                document.getElementById("zz3").style.height = "0px";
+                document.getElementById("wj2").innerHTML = z * 100;
+                document.getElementById("wanjia2").innerText = "gameover2";
+                if(sdf<2){
+                    sdf++;
+                    document.getElementById("zzjg").innerHTML = "玩家1获胜";
+                }
+            }
+//            判定玩家1与玩家2重合时吃球的过程（因全局变量skl原因，所以互吃判断只能一方进行 另一方立即锁定，防止参数变化结果加倍）
+            if(skl<2){
+                if (x > n && y > m && x + 20 * (i + 1) <= n + 20 * (z + 1) && y + 20 * (i + 1) <= m + 20 * (z + 1)) {
+                    skl++;
+                    z = z + i;
+                    document.getElementById("z3").style.display = "none";
+                    document.getElementById("zz3").style.width = 20 *(z+1) + "px";
+                    document.getElementById("zz3").style.height = 20 *(z+1) + "px";
+                    document.getElementById("wj2").innerHTML = z * 100;
+                    if(sdf<2) {
+                        sdf++;
+                        document.getElementById("zzjg").innerHTML = "玩家2获胜";
+                    }
+                    document.getElementById("wanjia1").innerText = "gameover1";
+                }
+                if (x > n && y == m && x + 20 * (i + 1) <= n + 20 * (z + 1)) {
+                    skl++;
+                    z = z + i;
+                    document.getElementById("z3").style.display = "none";
+                    document.getElementById("zz3").style.width = 20 *(z+1) + "px";
+                    document.getElementById("zz3").style.height = 20 *(z+1) + "px";
+                    document.getElementById("wj2").innerHTML = z * 100;
+                    if(sdf<2) {
+                        sdf++;
+                        document.getElementById("zzjg").innerHTML = "玩家2获胜";
+                    }
+                    document.getElementById("wanjia1").innerText = "gameover1";
+                }
+                if (x > n && y < m) {}
+                if (x == n && y > m && y + 20 * (i + 1) <= m + 20 * (z + 1)) {
+                    skl++;
+                    z = z + i;
+                    document.getElementById("z3").style.display = "none";
+                    document.getElementById("zz3").style.width = 20 *(z+1) + "px";
+                    document.getElementById("zz3").style.height = 20 *(z+1) + "px";
+                    document.getElementById("wj2").innerHTML = z * 100;
+                    if(sdf<2) {
+                        sdf++;
+                        document.getElementById("zzjg").innerHTML = "玩家2获胜";
+                    }
+                    document.getElementById("wanjia1").innerText = "gameover1";
+                }
+                if (x == n && y == m) {
+                    if (x + 20 * (i + 1) > n + 20 * (z + 1) && y + 20 * (i + 1) > m + 20 * (z + 1)) {
+                        skl++;
+                        i = i + z;
+                        document.getElementById("zz3").style.display = "none";
+                        document.getElementById("z3").style.width = 20*(i+1) + "px";
+                        document.getElementById("z3").style.height = 20*(i+1)+ "px";
+                        document.getElementById("wj1").innerHTML=i*100;
+                        if(sdf<2) {
+                            sdf++;
+                            document.getElementById("zzjg").innerHTML = "玩家1获胜";
+                        }
+                        document.getElementById("wanjia2").innerText = "gameover2";
+                    }
+                    if (x + 20 * (i + 1) == n + 20 * (z + 1) && y + 20 * (i + 1) == m + 20 * (z + 1)) {}
+                    if (x + 20 * (i + 1) < n + 20 * (z + 1) && y + 20 * (i + 1) < m + 20 * (z + 1)) {
+                        skl++;
+                        z = z + i;
+                        document.getElementById("z3").style.display = "none";
+                        document.getElementById("zz3").style.width = 20 *(z+1) + "px";
+                        document.getElementById("zz3").style.height = 20 *(z+1) + "px";
+                        document.getElementById("wj2").innerHTML = z * 100;
+                        if(sdf<2) {
+                            sdf++;
+                            document.getElementById("zzjg").innerHTML = "玩家2获胜";
+                        }
+                        document.getElementById("wanjia1").innerText = "gameover1";
+                    }
+                }
+                if (x == n && y < m && y + 20 * (i + 1) >= m + 20 * (z + 1)) {
+                    skl++;
+                    i = i + z;
+                    document.getElementById("zz3").style.display = "none";
+                    document.getElementById("z3").style.width = 20*(i+1) + "px";
+                    document.getElementById("z3").style.height = 20*(i+1)+ "px";
+                    document.getElementById("wj1").innerHTML=i*100;
+                    if(sdf<2) {
+                        sdf++;
+                        document.getElementById("zzjg").innerHTML = "玩家1获胜";
+                    }
+                    document.getElementById("wanjia2").innerText = "gameover2";
+                }
+                if (x < n && y > m) {
+                }
+                if (x < n && y == m && x + 20 * (i + 1) >= n + 20 * (z + 1)) {
+                    skl++;
+                    i = i + z;
+                    document.getElementById("zz3").style.display = "none";
+                    document.getElementById("z3").style.width = 20*(i+1) + "px";
+                    document.getElementById("z3").style.height = 20*(i+1)+ "px";
+                    document.getElementById("wj1").innerHTML=i*100;
+                    if(sdf<2) {
+                        sdf++;
+                        document.getElementById("zzjg").innerHTML = "玩家1获胜";
+                    }
+                    document.getElementById("wanjia2").innerText = "gameover2";
+                }
+                if (x < n && y < m && x + 20 * (i + 1) >= n + 20 * (z + 1) && y + 20 * (i + 1) >= m + 20 * (z + 1)) {
+                    skl++;
+                    i = i + z;
+                    document.getElementById("zz3").style.display = "none";
+                    document.getElementById("z3").style.width = 20*(i+1) + "px";
+                    document.getElementById("z3").style.height = 20*(i+1)+ "px";
+                    document.getElementById("wj1").innerHTML=i*100;
+                    if(sdf<2) {
+                        sdf++;
+                        document.getElementById("zzjg").innerHTML = "玩家1获胜";
+                    }
+                    document.getElementById("wanjia2").innerText = "gameover2";
+                }
+            }
+        }
+        function bqq(){
+            document.getElementById("z3").style.borderRadius="50%";
+            document.getElementById("zz3").style.borderRadius="50%";
+            document.getElementById("pp0").style.borderRadius="50%";
+            document.getElementById("pp1").style.borderRadius="50%";
+            document.getElementById("pp2").style.borderRadius="50%";
+            document.getElementById("pp3").style.borderRadius="50%";
+            document.getElementById("pp4").style.borderRadius="50%";
+            document.getElementById("pp5").style.borderRadius="50%";
+            document.getElementById("pp6").style.borderRadius="50%";
+        }
+    </script>
+    <style>
+        .z1{width: 300px;height: 500px;position:relative;background-color:yellowgreen;margin: 12px 50px;}
+        .z1 input{width:35px;height: 35px;text-align:center;color:black;background-color:gainsboro;}
+        .z11{float: left;font-size:35px;margin-left: 55px;margin-top:25px;color: darkmagenta;}
+        .z12{float: left;font-size: 20px;color:black;margin:0px 20px;}
+        .z13{padding-top:10px;float: left;width: 145px;height: 150px;text-align: center;}
+        .z14{padding-top:10px;float: right;width: 145px;height: 150px;text-align: center;}
+        .z13 a{color:#ffffff;font-size: 25px;display:block;}
+        .z14 a{color:#ffffff;font-size: 25px;}
+        .z2{width:500px;height: 500px;border: 4px solid red;position: absolute;
+        left: 400px;
+        top:10px;
+        background-color:lightyellow;}
+        #z3{text-align:center;width:20px;height:20px;background-color: blueviolet;position: absolute;left: 0px;top:0px;  }
+        #zz3{text-align:center;width:20px;height:20px;background-color:greenyellow;position: absolute;left: 0px;top: 480px;}
+        #pp0 {width:10px;height:10px;background-color:limegreen;position: absolute;}
+        #pp1 {width:10px;height:10px;background-color:mediumblue;position: absolute;}
+        #pp2 {width:10px;height:10px;background-color:yellow;position: absolute;}
+        #pp3 {width:10px;height:10px;background-color:deeppink;position: absolute;}
+        #pp4 {width:10px;height:10px;background-color:black;position: absolute;}
+        #pp5 {width:10px;height:10px;background-color:orangered;position: absolute;}
+        #pp6 {width:10px;height:10px;background-color:sandybrown;position: absolute;}
+        .xs{text-align:center;width:300px;height:440px;position: absolute;
+            left:950px ;top: 12px;padding-top:60px;background-color:yellowgreen;}
+        .xs1{float: left;font-size:35px;margin-left: 65px;color: darkmagenta;}
+        #wanjia1,#wanjia2,.wanjia1,.wanjia2{height:40px;width:130px;float: left;font-size: 25px;color: chocolate;margin-left: 35px;}
+        #wj1,#wj2{float: left;font-size: 25px;color:orangered;}
+        #zzjg{float: left;font-size:35px;margin-left: 65px;color: darkmagenta;padding-top: 20px; }
+        #mbqq{float: left;text-align: center;padding: 15px 60px;}
+        #mbqq input{background-color:chartreuse;width: auto;height: 30px;}
+        /*设置为球球大作战*/
+        /*#z3,#zz3,#pp0,#pp1,#pp2,#pp3,#pp4,#pp5{border-radius:50%;}*/
+    </style>
+</head>
+<body onload="sd()">
+<div class="z1">
+    <div class="z11">方块大作战</div>
+    <div class="z12">
+    <p>游戏规则:</p>
+    <p>玩家方块与小方块重合后，小方块被吃掉，大方块边长增大。
+       若玩家方块与玩家方块重合时，判定大玩家方块获得小玩家方块全部边长倍数，小方块出局，游戏结束。<br>
+        方块出边界，淘汰出局游戏结束。
+       </p>
+    </div>
+    <div class="z13">
+        <input type="button" value="w"><br>
+        <input type="button"  value="a">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button"  value="d"><br>
+        <input type="button"  value="s"><br>
+        <a>input2</a>
+    </div>
+    <span class="z14">
+        <input type="button" value="上"/><br>
+        <input type="button" value="左"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" value="右"/><br>
+        <input type="button" value="下"/><br>
+        <a>input1</a>
+    </span>
+</div>
+<div class="z2">
+    <div id="z3"></div>
+    <div id="zz3"></div>
+    <div id="pp0"></div>
+    <div id="pp1"></div>
+    <div id="pp2"></div>
+    <div id="pp3"></div>
+    <div id="pp4"></div>
+    <div id="pp5"></div>
+    <div id="pp6"></div>
+</div>
+<div class="xs">
+<div class="xs1">分数结果</div><br><br><br><br>
+<div class="wanjia1">玩家1分数:</div>
+<span id="wj1">0</span>
+<div id="wanjia1"></div>
+<div class="wanjia2">玩家2分数:</div>
+<span id="wj2">0</span>
+<div id="wanjia2"></div>
+<div id="zzjg">待分胜负</div>
+<div id="mbqq"><input type="button"value="想玩球球吗？快点我！"onclick="bqq()"></div>
+</div>
+</body>
+</html>

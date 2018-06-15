@@ -1,0 +1,258 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>循环演示</title>
+    <style>
+        .div1{height:374px;width: auto;background-color:whitesmoke;}
+        .div2{float: left;position:relative;width:300px;height:auto;margin: 5px;padding: 5px 6px;}
+        .div3{float:left;width: 44px;height:auto;margin-right:3px;}
+        .div3 a{color:black;text-decoration: none}
+        .div4{position:absolute;left:58px;top:5px;width:240px;height:auto;margin-left: 2px;}
+        .div4 a {color:green;}
+        .div3 div{width: 40px;height:60px;padding-top:24px;text-align: center;margin: 1px;}
+        .div4 div div{width:230px;height: 30px;padding-top:10px;text-align: center;margin: 1px;}
+    </style>
+    <script type="text/javascript"src="../../assets/js/jquery-1.11.3.js"></script>
+    <script type="text/javascript">
+        var nowShow = 1;
+            function show(index) {
+                if (Number(index)) {
+                    nowShow = index;
+                    clearTimeout(sid);
+                }
+                for (var i = 1; i < 5; i++) {
+                    if (i == nowShow) {
+                        document.getElementById("id" + i).style.backgroundColor = "greenyellow";
+                        document.getElementById("qd" + i).style.backgroundColor = "greenyellow";
+                        document.getElementById("wd" + i).style.backgroundColor = "greenyellow";
+                        document.getElementById("ed" + i).style.backgroundColor = "greenyellow";
+                        document.getElementById("xx" + nowShow).style.display = "";
+                        document.getElementById("yy" + i).style.display = "";
+                        document.getElementById("zz" + nowShow).style.display = "";
+                        document.getElementById("ss" + nowShow).style.display = "";
+                    }
+                    else{
+                        document.getElementById("id" + i).style.backgroundColor = "gray";
+                        document.getElementById("qd" + i).style.backgroundColor = "gray";
+                        document.getElementById("wd" + i).style.backgroundColor = "gray";
+                        document.getElementById("ed" + i).style.backgroundColor = "gray";
+                        document.getElementById("xx" + i).style.display = "none";
+                        document.getElementById("yy" + i).style.display = "none";
+                        document.getElementById("zz" + i).style.display = "none";
+                        document.getElementById("ss" + i).style.display = "none";
+                }}
+                if(nowShow==4)
+                     nowShow=1;
+                    else
+                    nowShow++;
+                    sid=setTimeout('show()',2000);
+        }
+
+    </script>
+</head>
+<body onload="show()">
+<div class="div1">
+    <div class="div2">
+        <div class="div3">
+            <div class="dd"id="id1"><a onmouseover="show(1)">杜<br>甫</a></div>
+            <div class="dd"id="id2"><a onmouseover="show(2)">王<br>勃</a></div>
+            <div class="dd"id="id3"><a onmouseover="show(3)">王<br>维</a></div>
+            <div class="dd"id="id4"><a onmouseover="show(4)">王<br>湾</a></div>
+        </div>
+        <div class="div4">
+            <div id="xx1"style="display:none">
+                <div class="dt"><a href="#">好雨知时节</a></div>
+                <div class="dt"><a href="#">当春乃发生</a></div>
+                <div class="dt"><a href="#">随风潜入夜</a></div>
+                <div class="dt"><a href="#">润物细无声</a></div>
+                <div class="dt"><a href="#">夜径云俱黑</a></div>
+                <div class="dt"><a href="#">江船火独明</a></div>
+                <div class="dt"><a href="#">晓看红湿处</a></div>
+                <div class="dt"><a href="#">花重锦官城</a></div>
+            </div>
+            <div id="xx2"style="display:none">
+                <div class="dt"><a href="#">城阙辅三秦</a></div>
+                <div class="dt"><a href="#">风烟望五津</a></div>
+                <div class="dt"><a href="#">与君离别意</a></div>
+                <div class="dt"><a href="#">同是宦游人</a></div>
+                <div class="dt"><a href="#">海内存知己</a></div>
+                <div class="dt"><a href="#">天涯若比邻</a></div>
+                <div class="dt"><a href="#">无为在歧路</a></div>
+                <div class="dt"><a href="#">儿女共沾巾</a></div>
+            </div>
+            <div id="xx3"style="display:none">
+                <div class="dt"><a href="#">单车欲问边</a></div>
+                <div class="dt"><a href="#">属国过居延</a></div>
+                <div class="dt"><a href="#">征蓬出汉塞</a></div>
+                <div class="dt"><a href="#">归雁入胡天</a></div>
+                <div class="dt"><a href="#">大漠孤烟直</a></div>
+                <div class="dt"><a href="#">长河落日圆</a></div>
+                <div class="dt"><a href="#">萧关逢候骑</a></div>
+                <div class="dt"><a href="#">都护在燕然</a></div>
+            </div>
+            <div id="xx4"style="display:none">
+                <div class="dt"><a href="#">客路青山下</a></div>
+                <div class="dt"><a href="#">行舟绿水前</a></div>
+                <div class="dt"><a href="#">潮平两岸阔</a></div>
+                <div class="dt"><a href="#">风正一帆悬</a></div>
+                <div class="dt"><a href="#">海日生残夜</a></div>
+                <div class="dt"><a href="#">江春入旧年</a></div>
+                <div class="dt"><a href="#">乡书何处达</a></div>
+                <div class="dt"><a href="#">归雁洛阳边</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="div2">
+        <div class="div3">
+            <div class="dd"id="qd4"><a onmouseover="show(4)">杜<br>甫</a></div>
+            <div class="dd"id="qd1"><a onmouseover="show(1)">王<br>勃</a></div>
+            <div class="dd"id="qd2"><a onmouseover="show(2)">王<br>维</a></div>
+            <div class="dd"id="qd3"><a onmouseover="show(3)">王<br>湾</a></div>
+        </div>
+        <div class="div4">
+            <div id="yy4"style="display:none">
+                <div class="dt"><a href="#">好雨知时节</a></div>
+                <div class="dt"><a href="#">当春乃发生</a></div>
+                <div class="dt"><a href="#">随风潜入夜</a></div>
+                <div class="dt"><a href="#">润物细无声</a></div>
+                <div class="dt"><a href="#">夜径云俱黑</a></div>
+                <div class="dt"><a href="#">江船火独明</a></div>
+                <div class="dt"><a href="#">晓看红湿处</a></div>
+                <div class="dt"><a href="#">花重锦官城</a></div>
+            </div>
+            <div id="yy1"style="display:none">
+                <div class="dt"><a href="#">城阙辅三秦</a></div>
+                <div class="dt"><a href="#">风烟望五津</a></div>
+                <div class="dt"><a href="#">与君离别意</a></div>
+                <div class="dt"><a href="#">同是宦游人</a></div>
+                <div class="dt"><a href="#">海内存知己</a></div>
+                <div class="dt"><a href="#">天涯若比邻</a></div>
+                <div class="dt"><a href="#">无为在歧路</a></div>
+                <div class="dt"><a href="#">儿女共沾巾</a></div>
+            </div>
+            <div id="yy2"style="display:none">
+                <div class="dt"><a href="#">单车欲问边</a></div>
+                <div class="dt"><a href="#">属国过居延</a></div>
+                <div class="dt"><a href="#">征蓬出汉塞</a></div>
+                <div class="dt"><a href="#">归雁入胡天</a></div>
+                <div class="dt"><a href="#">大漠孤烟直</a></div>
+                <div class="dt"><a href="#">长河落日圆</a></div>
+                <div class="dt"><a href="#">萧关逢候骑</a></div>
+                <div class="dt"><a href="#">都护在燕然</a></div>
+            </div>
+            <div id="yy3"style="display:none">
+                <div class="dt"><a href="#">客路青山下</a></div>
+                <div class="dt"><a href="#">行舟绿水前</a></div>
+                <div class="dt"><a href="#">潮平两岸阔</a></div>
+                <div class="dt"><a href="#">风正一帆悬</a></div>
+                <div class="dt"><a href="#">海日生残夜</a></div>
+                <div class="dt"><a href="#">江春入旧年</a></div>
+                <div class="dt"><a href="#">乡书何处达</a></div>
+                <div class="dt"><a href="#">归雁洛阳边</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="div2">
+        <div class="div3">
+            <div class="dd"id="wd3"><a onmouseover="show(3)">杜<br>甫</a></div>
+            <div class="dd"id="wd4"><a onmouseover="show(4)">王<br>勃</a></div>
+            <div class="dd"id="wd1"><a onmouseover="show(1)">王<br>维</a></div>
+            <div class="dd"id="wd2"><a onmouseover="show(2)">王<br>湾</a></div>
+        </div>
+        <div class="div4">
+            <div id="zz3"style="display:none">
+                <div class="dt"><a href="#">好雨知时节</a></div>
+                <div class="dt"><a href="#">当春乃发生</a></div>
+                <div class="dt"><a href="#">随风潜入夜</a></div>
+                <div class="dt"><a href="#">润物细无声</a></div>
+                <div class="dt"><a href="#">夜径云俱黑</a></div>
+                <div class="dt"><a href="#">江船火独明</a></div>
+                <div class="dt"><a href="#">晓看红湿处</a></div>
+                <div class="dt"><a href="#">花重锦官城</a></div>
+            </div>
+            <div id="zz4"style="display:none">
+                <div class="dt"><a href="#">城阙辅三秦</a></div>
+                <div class="dt"><a href="#">风烟望五津</a></div>
+                <div class="dt"><a href="#">与君离别意</a></div>
+                <div class="dt"><a href="#">同是宦游人</a></div>
+                <div class="dt"><a href="#">海内存知己</a></div>
+                <div class="dt"><a href="#">天涯若比邻</a></div>
+                <div class="dt"><a href="#">无为在歧路</a></div>
+                <div class="dt"><a href="#">儿女共沾巾</a></div>
+            </div>
+            <div id="zz1"style="display:none">
+                <div class="dt"><a href="#">单车欲问边</a></div>
+                <div class="dt"><a href="#">属国过居延</a></div>
+                <div class="dt"><a href="#">征蓬出汉塞</a></div>
+                <div class="dt"><a href="#">归雁入胡天</a></div>
+                <div class="dt"><a href="#">大漠孤烟直</a></div>
+                <div class="dt"><a href="#">长河落日圆</a></div>
+                <div class="dt"><a href="#">萧关逢候骑</a></div>
+                <div class="dt"><a href="#">都护在燕然</a></div>
+            </div>
+            <div id="zz2"style="display:none">
+                <div class="dt"><a href="#">客路青山下</a></div>
+                <div class="dt"><a href="#">行舟绿水前</a></div>
+                <div class="dt"><a href="#">潮平两岸阔</a></div>
+                <div class="dt"><a href="#">风正一帆悬</a></div>
+                <div class="dt"><a href="#">海日生残夜</a></div>
+                <div class="dt"><a href="#">江春入旧年</a></div>
+                <div class="dt"><a href="#">乡书何处达</a></div>
+                <div class="dt"><a href="#">归雁洛阳边</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="div2">
+        <div class="div3">
+            <div class="dd"id="ed2"><a onmouseover="show(2)">杜<br>甫</a></div>
+            <div class="dd"id="ed3"><a onmouseover="show(3)">王<br>勃</a></div>
+            <div class="dd"id="ed4"><a onmouseover="show(4)">王<br>维</a></div>
+            <div class="dd"id="ed1"><a onmouseover="show(1)">王<br>湾</a></div>
+        </div>
+        <div class="div4">
+            <div id="ss2"style="display:none">
+                <div class="dt"><a href="#">好雨知时节</a></div>
+                <div class="dt"><a href="#">当春乃发生</a></div>
+                <div class="dt"><a href="#">随风潜入夜</a></div>
+                <div class="dt"><a href="#">润物细无声</a></div>
+                <div class="dt"><a href="#">夜径云俱黑</a></div>
+                <div class="dt"><a href="#">江船火独明</a></div>
+                <div class="dt"><a href="#">晓看红湿处</a></div>
+                <div class="dt"><a href="#">花重锦官城</a></div>
+            </div>
+            <div id="ss3"style="display:none">
+                <div class="dt"><a href="#">城阙辅三秦</a></div>
+                <div class="dt"><a href="#">风烟望五津</a></div>
+                <div class="dt"><a href="#">与君离别意</a></div>
+                <div class="dt"><a href="#">同是宦游人</a></div>
+                <div class="dt"><a href="#">海内存知己</a></div>
+                <div class="dt"><a href="#">天涯若比邻</a></div>
+                <div class="dt"><a href="#">无为在歧路</a></div>
+                <div class="dt"><a href="#">儿女共沾巾</a></div>
+            </div>
+            <div id="ss4"style="display:none">
+                <div class="dt"><a href="#">单车欲问边</a></div>
+                <div class="dt"><a href="#">属国过居延</a></div>
+                <div class="dt"><a href="#">征蓬出汉塞</a></div>
+                <div class="dt"><a href="#">归雁入胡天</a></div>
+                <div class="dt"><a href="#">大漠孤烟直</a></div>
+                <div class="dt"><a href="#">长河落日圆</a></div>
+                <div class="dt"><a href="#">萧关逢候骑</a></div>
+                <div class="dt"><a href="#">都护在燕然</a></div>
+            </div>
+            <div id="ss1"style="display:none">
+                <div class="dt"><a href="#">客路青山下</a></div>
+                <div class="dt"><a href="#">行舟绿水前</a></div>
+                <div class="dt"><a href="#">潮平两岸阔</a></div>
+                <div class="dt"><a href="#">风正一帆悬</a></div>
+                <div class="dt"><a href="#">海日生残夜</a></div>
+                <div class="dt"><a href="#">江春入旧年</a></div>
+                <div class="dt"><a href="#">乡书何处达</a></div>
+                <div class="dt"><a href="#">归雁洛阳边</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

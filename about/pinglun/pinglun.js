@@ -15,7 +15,7 @@ $(function(){
         var texte=$("#tjtext").val();
         var str="";
         for(var i=0;i<5;i++){
-            if(i<=strs) {
+            if(i<strs) {
                 str = str + "<img src=' imgr.png'>";
             }
             else{
@@ -39,7 +39,7 @@ $(".nowstar div img").each(function(index){
         $(".nowstar div img").attr("src",starhx);
         $(this).attr("src",starrx);
         $(this).prevAll().attr("src",starrx);
-        strs=index;
+        strs=index+1;
     })
 })
 function over(){

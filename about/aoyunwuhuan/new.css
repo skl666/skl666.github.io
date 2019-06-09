@@ -1,0 +1,8 @@
+*{margin: 0px;}
+body>div{width: 400px;height: 300px;background-color:greenyellow;position: fixed;left: 50%;top: 50%;margin-left: -200px;margin-top: -150px;}
+body>div>div{width: 80px;height: 80px;border-radius:50%;}
+.wh1{border:10px solid red;position: absolute;left: 25px;top: 82px;}
+.wh2{border:10px solid dodgerblue;position: absolute;left: 150px;top: 82px;}
+.wh3{border:10px solid green;position: absolute;left: 275px;top: 82px;}
+.wh4{border:10px solid purple;position: absolute;left:87px;top: 118px;}
+.wh5{border:10px solid orange;z-index:1;position: absolute;left: 213px;top:118px;}

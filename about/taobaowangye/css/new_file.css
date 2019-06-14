@@ -210,6 +210,6 @@ ul li{list-style: none;cursor:pointer;color:#3C3C3C;opacity: 0.8;}
 .dds{width:100%;height:auto;}
 .ds{width:1190px ;height:auto;margin:0 auto;}
 
-.dsz{width:860px;height:73px;padding:14px 14px 12px 20px;margin-top:10px;float: left;background-color:#fff;}
+.dsz{width:860px;height:73px;padding:14px 14px 12px 20px;margin-top:10px;float: left;/*background-color:#fff;*/}
 .dsy{width:290px;height:110px;float:left;/*background-color: greenyellow;*/}
 .ds::after{content: "";clear: both;display: block;}

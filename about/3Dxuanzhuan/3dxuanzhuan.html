@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>3D旋转</title>
+		<style>
+			.box {
+				width: 400px;
+				height: 400px;
+				margin: 200px auto;
+				/* border: 2px solid black; */
+				transform-style: preserve-3d;
+				transform: rotateX(45deg)rotateY(-45deg);
+			}
+			
+			@keyframes donghua {
+				0% {
+					transform: rotateX(45deg)rotateY(-45deg);
+				}
+				100% {
+					transform: rotateX(405deg)rotateY(315deg);
+				}
+			}
+			
+			.box {
+				animation: donghua 4s infinite linear;
+			}
+			
+			.box div {
+				width: 400px;
+				height: 400px;
+				position: absolute;
+				left: 0;
+				top: 0;
+				opacity: 0.5;
+			}
+			
+			.top {
+				background-color: red;
+				transform: rotateX(90deg)translateZ(200px);
+			}
+			
+			.bottom {
+				background-color: gold;
+				transform: rotateX(90deg)translateZ(-200px);
+			}
+			
+			.left {
+				background-color: blue;
+				transform: rotateY(90deg)translateZ(200px);
+			}
+			
+			.right {
+				background-color: purple;
+				transform: rotateY(90deg)translateZ(-200px);
+			}
+			
+			.before {
+				background-color: aquamarine;
+				transform: translateZ(200px);
+			}
+			
+			.after {
+				background-color: brown;
+				transform: translateZ(-200px);
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<div class="top"></div>
+			<div class="bottom"></div>
+			<div class="left"></div>
+			<div class="right"></div>
+			<div class="before"></div>
+			<div class="after"></div>
+		</div>
+	</body>
+
+</html>

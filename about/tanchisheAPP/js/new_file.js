@@ -83,21 +83,21 @@ function snake() {
 		snake.style.top = this.snakeBody[i][1] * 20 + 'px';
 		snake.classList.add(this.snakeBody[i][2]);
 		this.mapDiv.appendChild(snake).classList.add('snake');
-		switch(this.direct) {
-			case 'right':
-				break;
-			case 'up':
-				snake.style.transform = 'rotate(270deg)';
-				break;
-			case 'left':
-				snake.style.transform = 'rotate(180deg)';
-				break;
-			case 'down':
-				snake.style.transform = 'rotate(90deg)';
-				break;
-			default:
-				break;
-		}
+//		switch(this.direct) {
+//			case 'right':
+//				break;
+//			case 'up':
+//				snake.style.transform = 'rotate(270deg)';
+//				break;
+//			case 'left':
+//				snake.style.transform = 'rotate(180deg)';
+//				break;
+//			case 'down':
+//				snake.style.transform = 'rotate(90deg)';
+//				break;
+//			default:
+//				break;
+//		}
 	}
 }
 

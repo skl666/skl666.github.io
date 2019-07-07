@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>时钟</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            background-color: black;
+            color: yellow;
+            /* font-size: 30px; */
+            /* 弹性布局 */
+            display: flex;
+            /* 左右居中 */
+            justify-content: center;
+            /* 上下居中 */
+            align-items: center;
+            /* 文字居中 */
+            text-align: center;
+        }
+
+        /* 自定义字体 */
+        @font-face {
+            font-family: "时钟体";
+            src: url("Digital Dismay字体.otf")
+        }
+
+        main div:nth-child(1) {
+            font-size: 120px;
+            font-family: "时钟体";
+        }
+
+        /* main div:nth-child(2){
+                font-size: 30px;
+            } */
+        main div:nth-of-type(2) {
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div id="time">14:55:20</div>
+        <div id="data">2019年7月4号 星期四</div>
+
+    </main>
+
+
+</body>
+<script>
+    function updataClock() {
+        var now = new Date();
+        var hour = now.getHours();
+        var minute = now.getMinutes();
+        var second = now.getSeconds();
+        var year=now.getFullYear();
+        var month=now.getMonth()+1;
+        var data=now.getDate();
+        var week=now.getDay();
+        // 月份从0开始，星期从星期日开始，星期日为0     
+        if (hour < 10) {
+            hour = "0" + hour;
+        }
+        if (minute < 10) {
+            minute = "0" + minute;
+        }
+        if (second < 10) {
+            second = "0" + second;
+        }
+        document.getElementById("time").innerHTML = hour + ":" + minute + ":" + second;
+        document.getElementById("data").innerHTML = year + "年" + month + "月" + data+"日 星期"+"日一二三四五六"[week];
+    }
+    updataClock();
+    setInterval(updataClock, 500);
+
+
+</script>
+
+</html>

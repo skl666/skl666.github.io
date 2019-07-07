@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>打字</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="animate.css">
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            background: radial-gradient(circle, #888, #444, #000);
+            /* 弹性布局，上下左右都居中 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #char {
+            text-align: center;
+            font-size: 300px;
+            overflow: hidden;
+            color: lightgreen;
+            /* 文字阴影：x轴偏移 Y轴偏移 阴影辐射范围 阴影颜色 */
+            text-shadow: 0px 0px 40px black;
+        }
+
+        #result {
+            text-align: center;
+            font-size: 25px;
+            color: white;
+        }
+
+        .error#char {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div id="char">H</div>
+        <div id="result">请在键盘上按下屏幕上显示的字母</div>
+    </main>
+</body>
+
+
+</html>
+<script>
+    var code;
+    var okcount = 0;
+    var errorcount = 0;
+    var time = 0;
+    var char = document.getElementById('char');
+    var result = document.getElementById('result');
+    function show() {
+        // 一种方法1
+        code = Math.floor(Math.random() * 26) + 65;
+        char.innerHTML = String.fromCharCode(code);
+
+        // 一种方法2   // [0,26)随机数
+        // var arr = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+        // var random = Math.floor(Math.random() * 26);
+        // var randomvalue = arr[random];
+        // document.getElementById('char').innerHTML = randomvalue;
+        // document.onkeydown = function (a) {
+        //     var kvalue = a.keyCode - 65;
+        //     if (random == kvalue) {
+        //         document.getElementsByTagName('div')[0].className = 'animated zoomIn';
+        //         show(); 
+        //     else {
+        //         document.getElementsByTagName('div')[0].className = 'error animated bounce';
+        //     }
+        // setTimeout(function(){
+        //        document.getElementsByTagName('div')[0].className="";
+        //     },500);
+        //     }
+        // }
+
+    }
+    show();
+    window.onkeyup = function (event) {
+        
+        if (event.keyCode == code) {
+            show();
+            document.getElementsByTagName('div')[0].className = 'animated zoomIn';
+            okcount++;
+        }
+        else {
+            char.className = 'error animated shake';
+            errorcount++;
+        }
+        setTimeout(function () {
+            char.className = "";
+        }, 500);
+        if (time == 0) {
+            result.innerHTML = "正确:" + okcount + "<br>错误:" + errorcount + "<br>正确率:" + (okcount * 100 / (okcount + errorcount)).toFixed(2) + "%" + "<br>速度:0字/分";
+
+        }
+        else {
+            result.innerHTML = "正确:" + okcount + "<br>错误:" + errorcount + "<br>正确率:" + (okcount * 100 / (okcount + errorcount)).toFixed(2) + "%" + "<br>速度:" + (okcount / time).toFixed(2)* 60  + "字/分";
+        }
+    }
+    start();
+    function start() {
+        setInterval(function () {
+            time++;
+            // console.log(time);
+        }, 1000);
+
+    }
+
+
+    // var c=('12345')[4];
+    // console.log(c);
+    // console.log('ABCDEFGHIJKLMNOPQRSTUVWXYZ'[Math.floor(Math.random()*26)]);
+
+
+</script>

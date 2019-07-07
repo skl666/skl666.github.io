@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>扫雷</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 30px;
+            color: #f40;
+        }
+
+        .main {
+            position: absolute;
+            border: 2px solid black;
+            left: 50%;
+            top: 50%;
+        }
+
+        .main div {
+            border: 1px solid red;
+            background-color: aquamarine;
+            position: absolute;
+            width: 58px;
+            height: 58px;
+            line-height: 58px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <p id="id"></p> -->
+    <main class="main" id="main"></main>
+</body>
+
+</html>
+<script>
+    var n = prompt('输入行数', 6);
+    var m = Math.floor((n * n) / 6);
+    // document.getElementById('id').innerHTML = "一共 " + m + " 个雷";
+    //      创建数组1和数组2，用于设置雷的初始横坐标
+    var ass = new Array(n);
+    var ass2 = new Array();
+    //        给数组1挨个赋值
+    for (var i = 0; i < n; i++) {
+        ass[i] = i;
+    }
+    //        设置for循环次数，即填入数组2的数值个数
+    for (var j = 0; j < m; j++) {
+        //出现随机数并作为数组1下标h，并获取 h下标的 数组1的值，然后 for循环 顺序加入数组2
+        var ram2 = Math.floor(Math.random() * n);
+        var xx = ass[ram2];
+        ass2.push(xx);
+    }
+    // console.log(ass2);
+    //        创建数组3和数组4，用于设置雷的初始纵坐标
+    var ast = new Array(n);
+    var ast2 = new Array();
+    //        给数组3挨个赋值
+    for (var i = 0; i < n; i++) {
+        ast[i] = i;
+    }
+    //        设置for循环次数，即填入数组4的数值个数
+    for (var j = 0; j < m; j++) {
+        var ram3 = Math.floor(Math.random() * n);
+        var xt = ast[ram3];
+        ast2.push(xt);
+    }
+    // console.log(ast2);
+    // 设置main宽高,位置居中
+    document.getElementById('main').style.width = 60 * n + 'px';
+    document.getElementById('main').style.height = 60 * n + 'px';
+    document.getElementById('main').style.marginLeft = -(30 * n + 2) + 'px';
+    document.getElementById('main').style.marginTop = -(30 * n + 2) + 'px';
+    // 通过for循环设置需要表盘格数多少
+    for (var i = 0; i < n * n; i++) {
+        var z = document.createElement('div');
+        document.getElementById('main').appendChild(z);
+    }
+    // 通过for循环，给所有div设置位置信息
+    for (i = 0; i < n; i++) {
+        for (y = 0; y < n; y++) {
+            var c = y + i * n;
+            // console.log(c);
+            document.getElementsByTagName('div')[c].style.top = i * 60 + "px";
+            document.getElementsByTagName('div')[c].style.left = y * 60 + "px";
+        }
+    }
+    bind();
+    function bind() {
+        for (var a = 0; a < (n * n); a++) {
+            var l = false;
+            //去掉默认的contextmenu事件，否则会和右键事件同时出现。
+            document.oncontextmenu = function (e) {
+                e.preventDefault();
+            };
+            document.getElementsByTagName('div')[a].onmousedown = function (e) {
+
+                if (e.button == 2) {
+                    if (l == false) {
+                        this.innerHTML = '标雷';
+                        l = true;
+                    } else {
+                        if (l == true) {
+                            this.innerHTML = '';
+                            l = false;
+                        }
+                    }
+                } else if (e.button == 0) {
+                    var h = 0;
+                    var ls = 0;
+                    var d = 0;
+                    // 获取点击div的坐标值，并转换为number类型
+                    xxx = this.style.top;
+                    yyy = this.style.left;
+                    xxx1 = Number(xxx.substring(0, xxx.length - 2));
+                    yyy1 = Number(yyy.substring(0, yyy.length - 2));
+                    for (var i = 0; i < m; i++) {
+                        if (xxx1 == (ast2[i] * 60) && yyy1 == (ass[i] * 60)) {
+                            d++;
+                        }
+                        if ((xxx1 - 60 == (ast2[i] * 60) && yyy1 - 60 == (ass[i] * 60)) ||
+                            (xxx1 == (ast2[i] * 60) && yyy1 - 60 == (ass[i] * 60)) ||
+                            (xxx1 + 60 == (ast2[i] * 60) && yyy1 - 60 == (ass[i] * 60)) ||
+                            (xxx1 - 60 == (ast2[i] * 60) && yyy1 == (ass[i] * 60)) ||
+                            (xxx1 + 60 == (ast2[i] * 60) && yyy1 == (ass[i] * 60)) ||
+                            (xxx1 - 60 == (ast2[i] * 60) && yyy1 + 60 == (ass[i] * 60)) ||
+                            (xxx1 == (ast2[i] * 60) && yyy1 + 60 == (ass[i] * 60)) ||
+                            (xxx1 + 60 == (ast2[i] * 60) && yyy1 + 60 == (ass[i] * 60))) {
+                            ls++;
+                            // console.log(ass[i]);
+                            // console.log(ast2[i]);
+
+                        }
+                        if (d == 0) {
+                            this.style.backgroundColor = "white";
+                            this.innerHTML = ls;
+                        }
+                        else {
+                            if (h < 1) {
+                                this.style.backgroundColor = "green";
+                                this.innerHTML = "雷";
+                                alert('游戏失败！');
+                                h++;
+                            }
+                        }
+                    }
+                }
+            }
+
+            document.getElementsByTagName('div')[a].onclick = function () {
+
+            }
+        }
+    }
+
+
+
+
+
+
+</script>

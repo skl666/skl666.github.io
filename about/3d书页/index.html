@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>3D书页</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            background-color: black;
+            overflow: hidden;
+            /* 鼠标不可选中 */
+            -moz-user-select: none;
+        }
+
+        main {
+            position: relative;
+            /* display: flex;
+            justify-content: center;
+            align-items: center; */
+            width: 300px;
+            height: 400px;
+            margin: 200px auto;
+            background-color: azure;
+            /* 3D转换 */
+            transform-style: preserve-3d;
+            /* 景深 */
+            perspective: 1000px;
+            /* 视角 X轴正方向 Y轴正方向 */
+            perspective-origin: 100% 160%;
+
+        }
+
+        section {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.85;
+            /* text-align: center; */
+            transform-origin: 0% 50%;
+        }
+
+        section i {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+
+        section:nth-child(1) {
+            background-color: wheat;
+            transform: rotateY(0deg);
+            /* 旋转锚点 X轴的值 y轴的值*/
+
+        }
+
+        section:nth-child(2) {
+            background-color: red;
+            transform: rotateY(-10deg);
+
+        }
+
+        section:nth-child(3) {
+            background-color: green;
+            transform: rotateY(-20deg);
+
+        }
+
+        section:nth-child(4) {
+            background-color: purple;
+            transform: rotateY(-30deg);
+
+        }
+        h2 {
+            text-align: center;
+            color: white;
+            margin-top: 20px;
+        }
+
+        section:nth-child(4) p {
+            color: #eee;
+            text-indent: 2em;
+            margin: 10px 20px 10px 35px;
+            font-size: 13px;
+        }
+
+        section:nth-child(4) span {
+            color: black;
+            position: absolute;
+            bottom: 50px;
+            right: 50px;
+        }
+
+        section:nth-child(5) {
+            background-color: rgb(56, 199, 144);
+            transform: rotateY(-40deg);
+            transition: transform 1s linear;
+             /* animation: donghua 1s linear both; */
+        }
+
+        section:nth-child(5):active {
+            transform: rotateY(-130deg);
+           
+           
+        }
+
+        h1 {
+            text-align: center;
+            color: black;
+            margin-top: 100px;
+        }
+
+        section:nth-child(5) span {
+            color: #000;
+            position: absolute;
+            bottom: 100px;
+            left: 100px;
+            font-size: 30px;
+            font-weight: 500;
+        }
+
+        /* @keyframes donghua {
+            0% {
+                transform: rotateY(-40deg);
+            }
+            50% {
+                transform: rotateY(-130deg);
+            }
+            100% {
+                transform: rotateY(-40deg);
+            }
+        } */
+    </style>
+</head>
+
+<body>
+    <main>
+        <section>
+            <i>4</i>
+        </section>
+        <section>
+            <i>3</i>
+        </section>
+        <section>
+            <i>2</i>
+        </section>
+        <section>
+            <i>1</i>
+            <h2>引言</h2>
+            <p>矩阵在图形变换中有广泛的应用，也是图形变换的数学基础。缩放、旋转、倾斜变换只需要使用 2 x 2 矩阵，
+                如果把平移也加入进来，将得到 2 x 3 矩阵，如果进一步扩充，可以使用一个 3 x 3 的矩阵表示所有的基本2D变换。
+                多个变换矩阵相乘将得到组合变换的效果。3D变换也可以很方便地用 4 x 4 的矩阵表示。
+            </p>
+            <p> 在图形变换过程中，普通的几何图形只需要考虑顶点即可。旋转变换时需要使用三角函数。
+                为了在平面显示器中看到3D效果，还需要使用透视理论。
+            </p>
+            <span> 智游H5教研组 编著
+            </span>
+        </section>
+        <section>
+            <h1>CSS图形变换入门</h1>
+            <span>智游教育</span>
+        </section>
+    </main>
+</body>
+
+</html>

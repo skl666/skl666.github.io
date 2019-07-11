@@ -7,21 +7,24 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>钢琴</title>
     <style>
-        html,body{
+        html,
+        body {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
 
         }
-        body{
+
+        body {
             display: flex;
             justify-content: center;
             align-items: center;
-            background: radial-gradient(circle,#666,#111,#000);
-           
+            background: radial-gradient(circle, #666, #111, #000);
+
         }
-        main{
+
+        main {
             width: 100%;
             height: 100%;
             /* 最大宽和最大高 */
@@ -35,19 +38,22 @@
             box-shadow: 0 0 20px rgb(189, 171, 10);
             display: flex;
         }
+
         main div {
             /* display: inline-block; */
             /* width: 85px; */
             height: 100%;
             /* 对父元素等比分割 */
-           flex-grow: 1;
+            flex-grow: 1;
             /* background-color: rebeccapurple; */
-           margin: 1px;
+            margin: 1px;
         }
-        div:active {
+
+        div:active,
+        div.active {
             background-image:
-            linear-gradient(rgba(255,255,255,0),
-            rgba(255,255,255,0),rgba(150,150,150,1));
+                linear-gradient(rgba(255, 255, 255, 0),
+                    rgba(255, 255, 255, 0), rgba(150, 150, 150, 1));
         }
     </style>
 </head>
@@ -78,14 +84,32 @@
 
 </html>
 <script>
+    var divs = document.getElementsByTagName("div");
+    var code = 0;
+    window.onkeydown = function (event) {
+        if (code == event.keyCode) {
+            return;
+        }
+        code = event.keyCode;
+        if (code >= 49 && code <= 57) {
+            play(code - 49);
+            divs[code - 49].className = 'active';
+        }
+    }
+    window.onkeyup = function (event) {
+        if (event.keyCode >= 49 && event.keyCode <= 57) {
+            divs[event.keyCode - 49].className = '';
+            code = 0;
+        }
+    }
     // 所有的音频播放
     var audios = document.getElementsByTagName("audio");
     function play(e) {
         //获取对应的audio标签
         var aud = audios[e];
-        // 从新加载
+        // 从新加载(防止上一个没播完下个不能播)
         aud.load();
         //播放标签
-        aud.play();
+        aud.play(); 1
     }
 </script>

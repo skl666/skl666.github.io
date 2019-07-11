@@ -84,24 +84,6 @@
 
 </html>
 <script>
-    var divs = document.getElementsByTagName("div");
-    var code = 0;
-    window.onkeydown = function (event) {
-        if (code == event.keyCode) {
-            return;
-        }
-        code = event.keyCode;
-        if (code >= 49 && code <= 57) {
-            play(code - 49);
-            divs[code - 49].className = 'active';
-        }
-    }
-    window.onkeyup = function (event) {
-        if (event.keyCode >= 49 && event.keyCode <= 57) {
-            divs[event.keyCode - 49].className = '';
-            code = 0;
-        }
-    }
     // 所有的音频播放
     var audios = document.getElementsByTagName("audio");
     function play(e) {

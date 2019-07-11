@@ -69,15 +69,15 @@
     <audio src="notes/8.oga"></audio>
     <audio src="notes/9.oga"></audio>
     <main>
-        <div onmousedown="play(0)"></div>
-        <div onmousedown="play(1)"></div>
-        <div onmousedown="play(2)"></div>
-        <div onmousedown="play(3)"></div>
-        <div onmousedown="play(4)"></div>
-        <div onmousedown="play(5)"></div>
-        <div onmousedown="play(6)"></div>
-        <div onmousedown="play(7)"></div>
-        <div onmousedown="play(8)"></div>
+        <div onclick="play(0)"></div>
+        <div onclick="play(1)"></div>
+        <div onclick="play(2)"></div>
+        <div onclick="play(3)"></div>
+        <div onclick="play(4)"></div>
+        <div onclick="play(5)"></div>
+        <div onclick="play(6)"></div>
+        <div onclick="play(7)"></div>
+        <div onclick="play(8)"></div>
 
     </main>
 </body>
@@ -110,6 +110,6 @@
         // 从新加载(防止上一个没播完下个不能播)
         aud.load();
         //播放标签
-        aud.play(); 1
+        aud.play();
     }
 </script>

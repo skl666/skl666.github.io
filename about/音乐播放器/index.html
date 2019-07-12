@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>音乐播放器</title>
+    <link rel="stylesheet" href="glyphicon.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0px;
+        }
+
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: dimgray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        main {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            overflow: hidden;
+            background-image: url(wf.png);
+            background-size: 100% 100%;
+            border-radius: 20px;
+            background-position: 0px 0px;
+            animation: 1s;
+            -moz-user-select: none;
+        }
+
+        @keyframes leftslide {
+            0% {
+                background-position: -300px 0;
+            }
+
+            100% {
+                background-position: 0 0;
+            }
+        }
+
+        @keyframes rightslide {
+            0% {
+                background-position: 300px 0;
+            }
+
+            100% {
+                background-position: 0 0;
+            }
+        }
+
+        .header {
+            opacity: 0.9;
+            width: 100%;
+            height: 90px;
+            background-color: black;
+            text-align: center;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .header p:nth-child(1) {
+            color: aliceblue;
+            font-size: 30px;
+            padding-top: 10px;
+        }
+
+        .header p:nth-child(2) {
+            color: white;
+        }
+
+        #progress {
+            height: 3px;
+            background-color: red;
+            position: absolute;
+            left: 0px;
+            top: 87px;
+        }
+
+        .footer {
+            border-radius: 0 0 20px 20px;
+            opacity: 0.95;
+            width: 100%;
+            height: 70%;
+            background-color: rgb(102, 71, 36);
+        }
+
+        .footer p:nth-child(1) {
+            padding-top: 30px;
+            text-align: center;
+            color: white;
+            font-size: 30px;
+
+        }
+
+        .footer p:nth-child(2) {
+            padding-top: 10px;
+            text-align: center;
+            color: #eee;
+            font-size: 40px;
+            padding-top: 15px;
+
+        }
+
+        .footer p:nth-child(2) i {
+            margin: 0 20px;
+            line-height: 70px;
+            vertical-align: top;
+        }
+
+        .footer p:nth-child(2) i:nth-child(2) {
+            font-size: 60px;
+        }
+
+        .footer p:nth-child(2) i:hover {
+            color: white;
+            box-shadow: 0 0 10px #eee;
+        }
+
+        .volume {
+            width: 200px;
+            height: 30px;
+            position: absolute;
+            bottom: 0px;
+            left: calc(50% - 100px);
+        }
+
+        .volume div {
+            position: absolute;
+            left: 20px;
+            top: 4px;
+            display: inline-block;
+            width: 150px;
+            height: 5px;
+            border: 1px solid black;
+            background-color: #eee;
+        }
+
+        .volume div span {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            display: inline-block;
+            width: 150px;
+            height: 5px;
+            background-color: orange;
+            z-index: 999;
+        }
+
+        .volume i:nth-child(1) {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+
+        .volume i:nth-child(3) {
+            position: absolute;
+            left: 180px;
+            top: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <audio id="music"></audio>
+    <main id="beijing">
+        <div class="header">
+            <p id="musicname"></p>
+            <p id="singer"></p>
+        </div>
+        <div id="progress"></div>
+        <div class="footer">
+            <p id="time">0:00</p>
+            <p>
+                <i class="glyphicon glyphicon-backward" id="lastmusic"></i>
+                <i class="glyphicon glyphicon-play" id="start"></i>
+                <i class="glyphicon glyphicon-forward" id="nextmusic"></i>
+                <!-- <i class="glyphicon glyphicon-pause"></i>
+             <i class="glyphicon glyphicon-stop"></i> -->
+            </p>
+            <div class="volume">
+                <i class="glyphicon glyphicon-volume-down" id="volumeleft"></i>
+                <!-- <i class="glyphicon glyphicon-volume-off"></i> -->
+                <div> <span id="huds"></span></div>
+                <i class="glyphicon glyphicon-volume-up" id="volumeright"></i>
+            </div>
+        </div>
+
+
+    </main>
+</body>
+<script>
+    var w = document.documentElement.clientWidth;
+    var h = document.documentElement.clientHeight;
+    var beijing = document.getElementById("beijing");
+    var music = document.getElementById("music");
+    var musicname = document.getElementById('musicname');
+    var singer = document.getElementById('singer');
+    var progress = document.getElementById("progress");
+    var time = document.getElementById('time');
+    var lastmusic = document.getElementById("lastmusic");
+    var start = document.getElementById('start');
+    var nextmusic = document.getElementById('nextmusic');
+    var volumeleft = document.getElementById("volumeleft");
+    var huds = document.getElementById("huds");
+    var volumeright = document.getElementById("volumeright");
+    var timestart;
+    var m = false;
+    var musiclang;
+    var mtime;
+    var yinliang = music.volume;
+    yinliang = 1;
+    var arr = [{ musicsrc: "传奇.mp3", muname: "传奇", singer: "王菲", baground: "url(wf.png)" },
+    { musicsrc: "知道不知道.mp3", muname: "知道不知道", singer: "刘若英", baground: "url(lry.jpg)" },
+    { musicsrc: "夜太美.mp3", muname: "夜太美", singer: "SWIN",baground: "url(2120535817652.png)" }
+    ];
+    arr.push({ musicsrc: "只因你太美.mp3", muname: "只因你太美", singer: "蔡徐坤", baground: "url(start.png)"});
+    var jishu = 0;
+    window.onresize = function () {
+        w = document.documentElement.clientWidth;
+        h = document.documentElement.clientHeight;
+    }
+    init();
+    function init() {
+        music.src = arr[0].musicsrc;
+        music.load();
+        music.play();
+        musicname.innerHTML = arr[0].muname;
+        singer.innerHTML = arr[0].singer;
+        beijing.style.background = arr[0].baground;
+        beijing.style.backgroundSize = 100 + "%";
+        setTimeout(function(){
+        musiclang=Number(music.duration.toFixed(2))}, 100); 
+    }
+    function qiege() {
+        setTimeout(function(){
+        musiclang=Number(music.duration.toFixed(2))}, 100);
+        window.clearInterval(timestart);
+        music.src = arr[jishu].musicsrc;
+        musicname.innerHTML = arr[jishu].muname;
+        singer.innerHTML = arr[jishu].singer;
+        music.load();
+        music.play();
+        st();
+        beijing.style.background = arr[jishu].baground;
+        beijing.style.backgroundSize = 100 + "%";
+        start.className = "glyphicon glyphicon-pause";
+        m = true;
+       
+    }
+    // 音乐进度条运动 以及当前歌曲时间显示
+    function st() {
+        var timestart = setInterval(function () {
+            mtime = Number(music.currentTime.toFixed(0));
+            var d = (mtime - mtime % 60) / 60;
+            if (mtime % 60 < 10) {
+                time.innerHTML = d + ":0" + mtime % 60;
+            }
+            else {
+                time.innerHTML = d + ":" + mtime % 60;
+            }
+            t = mtime / musiclang * 300;
+            if (t >= 300) {
+                window.clearInterval(timestart);
+                start.className = "glyphicon glyphicon-stop";
+                m = false;
+            }
+            progress.style.width = t + "px";
+        }, 1000);
+    }
+    // 上一曲按钮点击
+    lastmusic.onclick = function () {
+        jishu--;
+        if (jishu < 0) {
+            jishu = arr.length - 1;
+        }
+        beijing.style.animationName = "rightslide";
+        qiege();
+    }
+    // 中间按钮点击
+    start.onclick = function () {
+        if (m == true) {
+            start.className = "glyphicon glyphicon-play";
+            window.clearInterval(timestart);
+            music.pause();
+            m = false;
+        }
+        else {
+            m = true;
+            start.className = "glyphicon glyphicon-pause";
+            music.play();
+            st();
+        }
+    }
+    // 下一曲按钮点击
+    nextmusic.onclick = function () {
+        jishu++;
+        if (jishu > arr.length - 1) {
+            jishu = 0;
+        }
+        qiege();
+        beijing.style.animationName = "leftslide";
+    }
+
+    // 左音量按钮
+    volumeleft.onclick = function () {
+        this.className = "glyphicon glyphicon-volume-off";
+        // 静音 volume 属性设置或返回音频的音量，从 0.0 (静音) 到 1.0 (最大声)。
+        // music.muted = true;
+        music.volume = 0;
+        huds.style.width = 0 + "px";
+    }
+    // 右音量按钮
+    volumeright.onclick = function () {
+        volumeleft.className = "glyphicon glyphicon-volume-down";
+        music.volume = 1;
+        huds.style.width = 100 + "%";
+    }
+    // 进度条点击 音量条点击
+    window.onclick = function (a) {
+        var yinliangx = w * 0.5 - 150 + 20 + 50;
+        var yinliangy = h * 0.5 + 150 - 26;
+        if (a.pageX >= yinliangx && a.pageX <= yinliangx + 150 && a.pageY >= yinliangy && a.pageY <= yinliangy + 5) {
+            huds.style.width = (a.pageX - yinliangx) + "px";
+            music.volume = (a.pageX - yinliangx) / 150 * 1;
+            volumeleft.className = "glyphicon glyphicon-volume-down"
+        }
+        var jinx = w * 0.5 - 150;
+        var jiny = h * 0.5 - 150 + 85;
+        if (a.pageX >= jinx && a.pageX <= jinx + 300 &&
+            a.pageY >= jiny && a.pageY <= jiny + 7) {
+            music.currentTime = ((a.pageX - jinx) / 300 * musiclang);
+            mtime = Number(((a.pageX - jinx) / 300 * musiclang).toFixed(0));
+        }
+    }
+
+</script>
+
+</html>

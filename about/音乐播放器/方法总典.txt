@@ -1,0 +1,265 @@
+ctrl+shirt+m 浏览器手机端显示 ctrl+f 查找 ctrl+h 替换 ctrl+g 跳转到行
+五大主流浏览器及其内核 
+IE(trident) 	Firefox(Gecko) 	Chrome(webkit/blink)  Safari(webkit)  Opera(presto/webkit)
+浏览器兼容
+1、-moz代表firefox浏览器私有属性
+2、-ms代表ie浏览器私有属性
+3、-webkit代表safari、chrome私有属性
+4. -o 代表欧朋浏览器私有属性
+例：-webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box;   Firefox
+    box-sizing: border-box;  Safari
+
+html标签不能设置外边距可以设置边框内边距 body什么都可以设置而且不论文档多少 背景都可以铺满全屏
+定位
+盒子margin左上角相对于父元素padding左上角进行定位！！！
+
+选择器
+两个选择器加空格是父子选择 不加空格是并列选择
+sapn+p{} 找到与某元素下方紧邻的元素
+ ul li:nth-child(2){}开始是1 li的父元素ul中 第二个子元素 是li 和li的父元素ul中  第二个孙元素  是li。
+ ul li:nth-of-type(2){}开始是1  li的父元素ul中 第二个 li子元素  和li的父元素ul中  第二个 li孙元素 。
+
+背景图片
+
+        background-image: url(clock.jpg);
+        background-size: 500px auto;
+        background-repeat: no-repeat;
+        /* 背景图片绝对居中 */
+        background-position: 50% 50%;
+         /* 从中心无限圆环延伸 */
+        background: radial-gradient(circle, red, green, blue);
+阴影
+ /* 文字阴影：x轴偏移 Y轴偏移  阴影模糊和范围 阴影颜色 */
+            text-shadow: 0px 0px  10px black;
+
+对齐方式
+            background-position: center bottom;
+            /* 行元素的子物体居中 */
+            text-align: center;
+            /*行元素的子元素下对齐 */
+            vertical-align: bottom;
+
+3D转换
+^z轴 正方向
+|
+|                             （箭头指你脸）顺时针方向为角度旋转正方向
+|
+|_____________>X轴 正方向
+|
+|
+|
+|
+|y轴正方向
+
+            /* 3D转换 */
+            transform-style: preserve-3d;
+            /* 景深 */
+            perspective: 1000px;
+            /* 视角 X轴正方向 Y轴正方向 */
+            perspective-origin: 100% 160%;
+            /* 旋转锚点 X轴的值 y轴的值*/
+            transform-origin: 0% 50%;
+
+
+自定义字体
+       /* 自定义字体 */
+        @font-face {
+            font-family: "时钟体";
+            src: url("Digital Dismay字体.otf")
+        }
+
+        main div:nth-child(1) {
+            font-size: 120px;
+            font-family: "时钟体";
+        }
+
+弹性布局
+            /* 弹性布局 */
+            display: flex;
+            /* 左右居中 */
+            justify-content: center;
+            /* 上下居中 */
+            align-items: center;
+            /*弹性布局方向   direction方向 column列布局 row行排列（默认）*/
+            flex-direction: column;
+
+定义盒子大小(指定谁，宽高就在谁身上) 默认content-box 
+    /* box-sizing: content-box; */
+    /* box-sizing: border-box; */
+
+css中的运算
+            position: absolute;
+            / - 号前后有空格（必须加）/
+            left: calc(50% - 5px);
+            top: calc(50% - 5px);
+
+动画
+translate 平移 rotate 旋转 scale(数字m) 原比例乘以数字缩放倍数m
+ /* 等比缩放 */
+ snow.style.transform = "scale(" + (Math.random() * 0.4 + 0.2) + ")";
+        #hours {
+            /* 调整锚点 */
+            transform-origin: 50% 83.33%;
+            /* 动画运行 :动画名称 周期时间 线性的 无限循环 */
+            animation: rot 43200s linear infinite;
+            /* 动画延时，可为负数(无限循环前提下)即提前运行 */
+            animation-delay:0.5s;
+                /*both 开始时所有动画停留在第一帧，结束时停留在最后一帧 */
+                /* forward 开始时所有动画停留在原位置，结束时停留在最后一帧*/
+                /* backwards 开始时所有动画停留在第一帧，结束时停留在原位置*/
+                animation: slide 2s both;
+        }
+animation-name 	规定需要绑定到选择器的 keyframe 名称。。
+animation-duration 	规定完成动画所花费的时间，以秒或毫秒计。
+animation-timing-function 	规定动画的速度曲线。
+animation-delay 	规定在动画开始之前的延迟。
+animation-iteration-count 	规定动画应该播放的次数。
+animation-direction 	规定是否应该轮流反向播放动画。
+        /* 定义动画 */
+        @keyframes rot {
+            0% {
+                transform: rotate(0);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+js中动画延时写法  
+document.getElementById('seconds').style.animationDelay = -s + "s";
+
+参数
+ /* 实参 */
+<body onclick="action(event)" id="id"></body>
+ /* 形参 */
+function action(e) {
+    e.pageX =  ；鼠标点击点在屏幕上的X坐标
+    e.pageY =  ；鼠标点击点在屏幕上的Y坐标
+}
+
+获取屏幕宽高
+js方法： var w = document.documentElement.clientWidth;
+    var h = document.documentElement.clientHeight;
+jquery方法： var w = $(window).width();
+             var h = $(window).height();
+jquery方法：屏幕宽高发生改变：$(window).resize(layout); layout是个函数
+js方法：当屏幕尺寸发生变化时从新获取宽高
+window.onresize = function () {
+    w = document.documentElement.clientWidth;
+    h = document.documentElement.clientHeight;
+}
+
+定时器
+start 函数名 500 时间
+setInterval(start, 500); 先运行 0.5秒后再运行
+setTimeout(start, 500); 先不运行 0.5秒后运行
+
+内置时间对象
+        var now = new Date();
+        var hour = now.getHours();
+        var minute = now.getMinutes();
+        var second = now.getSeconds();
+        var year=now.getFullYear();
+        var month=now.getMonth()+1;
+        var data=now.getDate();
+        var week=now.getDay();
+// 月份从0开始，星期从星期日开始，星期日为0
+
+随机数
+Math.floor 取下整数  Math.ceil 取上整数
+Math.random() 随机数0--1【0，1）取到0取不到1
+ var m = Math.floor(Math.random() * 0.5 + 0.25);
+
+音频播放
+<audio src="费玉清-一剪梅.mp3" controls autoplay loop></audio>
+controls autoplay loop    显示音频按钮 加载完毕自动播放 循环播放
+function play(e) {
+        //获取对应的audio标签
+        var aud = audios[e];
+        // 从新加载(防止上一个没播完下个不能播)
+        aud.load();
+        //播放标签
+        aud.play();
+        //音乐暂停
+        music.pause();
+    }
+ 音频属性： 
+ // volume 属性设置或返回音频的音量，从 0.0 (静音) 到 1.0 (最大声)。
+        music.volume = 0.5;  
+当前播放音乐时间：music.currentTime
+mtime = Number(music.currentTime.toFixed(0));  
+
+网上音频属性 http://www.w3school.com.cn/jsref/dom_obj_audio.asp   
+
+键盘事件 
+onKeyPress 当键盘上的某个键被按下并且释放时触发的事件.[注意:页面内必须有被聚焦的对象]
+onKeyDown  当键盘上某个按键被按下时触发的事件[注意:页面内必须有被聚焦的对象]
+onKeyUp 当键盘上某个按键被按放开时触发的事件[注意:页面内必须有被聚焦的对象]
+ window.onkeyup = function (event) {
+        play(event.keyCode - 49);
+    }
+
+ASSII码
+//把数字转化为ASSII对应的字符
+        code = Math.floor(Math.random() * 26) + 65;
+        char.innerHTML = String.fromCharCode(code);
+
+鼠标事件
+             css/* 鼠标不可选中 */
+            -moz-user-select: none;
+            /* 更改鼠标样式 */
+            cursor: url(image/cursor.png), auto;
+            /* cursor: pointer; */
+//去掉默认的contextmenu事件，否则会和右键事件同时出现。
+ document.oncontextmenu = function (e) {
+                e.preventDefault();
+            };
+ document.getElementById("test").onmousedown = function (e) {
+                if (e.button == 2) {
+                    alert("你点了右键");
+                } else if (e.button == 0) {
+                    alert("你点了左键");
+                } 
+            }
+onClick 鼠标点击事件
+onDblClick 鼠标双击事件
+onMouseDown  鼠标上的按钮被按下了
+onMouseUp   	鼠标按下后，松开时激发的事件
+onMouseOver 当鼠标移动到某对象范围的上方时触发的事件
+onMouseMove  鼠标移动时触发的事件
+onMouseOut 当鼠标离开某对象范围时触发的事件
+onmouseenter：鼠标进入
+onmouseleave：鼠标离开
+
+HTML事件
+onload：文档加载完成
+onselect：被选中的时候
+onchange：内容被改变 （当前元素失去焦点并且元素的内容发生改变而触发的事件 [鼠标与键盘的触发均可]）
+onfocus：得到光标（当某个元素获得焦点时触发的事件）
+onresize：窗口尺寸变化
+onscroll：滚动条移动
+表单事件
+onBlur 当前元素失去焦点时触发的事件 [鼠标与键盘的触发均可]
+onChange 当前元素失去焦点并且元素的内容发生改变而触发的事件 [鼠标与键盘的触发均可]
+onFocus 当某个元素获得焦点时触发的事件
+onReset 当表单中RESET的属性被激发时触发的事件
+onSubmit 一个表单被递交时触发的事件
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

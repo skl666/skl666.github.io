@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>手表</title>
+    <style>
+        html {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+            background-image: url(clock.jpg);
+            background-size: 500px auto;
+            background-repeat: no-repeat;
+            /* 背景图片绝对居中 */
+            background-position: 50% 50%;
+            /* display: flex;
+            justify-content: center;
+            align-items: center; */
+        }
+
+        #dot {
+            width: 20px;
+            height: 20px;
+            background-color: black;
+            border-radius: 50%;
+            position: absolute;
+            left: calc(50% - 10px);
+            top: calc(50% - 10px);
+            /* margin-left: -5px;
+            margin-top: -5px; */
+            z-index: 999;
+        }
+
+        #seconds {
+            border-radius: 2px;
+            width: 4px;
+            height: 200px;
+            background-color: red;
+            /* border-top:200px solid purple; 
+            border-left: 10px solid red;
+            border-right: 10px solid gold;
+            border-bottom: 0;   */
+            position: absolute;
+            left: calc(50% - 2px);
+            top: calc(50% - 160px);
+            transform-origin: 50% 80%;
+            animation: rot 60s linear infinite;
+        }
+
+        #minutes {
+            border-radius: 3px;
+            width: 6px;
+            height: 160px;
+            background-color: green;
+            /* border-top:200px solid purple; 
+            border-left: 10px solid red;
+            border-right: 10px solid gold;
+            border-bottom: 0;   */
+            position: absolute;
+            left: calc(50% - 3px);
+            top: calc(50% - 130px);
+            transform-origin: 50% 81.25%;
+            animation: rot 3600s linear infinite;
+        }
+
+        #hours {
+            border-radius: 4px;
+            width: 8px;
+            height: 120px;
+            background-color: blue;
+            /* border-top:200px solid purple; 
+            border-left: 10px solid red;
+            border-right: 10px solid gold;
+            border-bottom: 0;   */
+            position: absolute;
+            left: calc(50% - 4px);
+            top: calc(50% - 100px);
+            transform-origin: 50% 83.33%;
+            animation: rot 43200s linear infinite;
+        }
+        @keyframes rot {
+            0% {
+                transform: rotate(0);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+       
+    </style>
+</head>
+
+<body>
+    <!-- 表盘中间原点 -->
+    <div id="dot"></div>
+    <div id="seconds"></div>
+    <div id="minutes"></div>
+    <div id="hours"></div>
+
+</body>
+<script>
+    // start();
+    // setInterval(start, 1000);
+    // function start() {
+    //     var today = new Date();
+    //     var seconds = today.getSeconds();
+    //     var minutes = today.getMinutes();
+    //     var hours = today.getHours();
+    //     if (hours > 12) {
+    //         hours = hours - 12;
+    //     }
+    //     var minutesdeg = minutes * 6 + seconds * 0.1;
+    //     var hoursdeg = hours * 30 + minutes * 0.5 + seconds * 30 / 3600;
+    //     document.getElementById('seconds').style.transform = "rotate(" + seconds * 6 + "deg)";
+    //     document.getElementById('minutes').style.transform = "rotate(" + minutesdeg + "deg)";
+    //     document.getElementById('hours').style.transform = "rotate(" + hoursdeg + "deg)";
+    // }
+    var today = new Date();
+    var s = today.getSeconds();
+    var m = today.getMinutes();
+    var h = today.getHours();
+    document.getElementById('seconds').style.animationDelay = -s + "s";
+    document.getElementById('minutes').style.animationDelay = -(m * 60 + s) + "s";
+    document.getElementById('hours').style.animationDelay = -(h * 3600 + m * 60 + s) + "s";
+</script>
+
+</html>

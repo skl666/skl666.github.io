@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>名片</title>
+        <style>
+            /* *{
+                margin: 0;
+            padding: 0;
+            } */
+            html,
+            body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            main {
+                width: 500px;
+                height: 500px;
+                background-color: darkgray;
+                position: relative;
+            }
+
+            .top {
+                width: 350px;
+                height: 200px;
+                background-color: orange;
+                position: absolute;
+                left: 100px;
+                top: 50px;
+                transform: rotate(15deg);
+                z-index: 999;
+                box-shadow: 0 0 10px black;
+            }
+
+            .topleft {
+                width: 230px;
+                height: 200px;
+                position: absolute;
+                left: 0;
+                top: 0;
+                /* 定义盒子大小 默认content-box */
+                /* box-sizing: content-box; */
+                /* box-sizing: border-box; */
+            }
+
+            .topleft img {
+                width: 120px;
+                height: 30px;
+                margin: 10px;
+                margin-left: 20px;
+                margin-top: 20px;
+            }
+
+            .topleft p {
+                font-size: 10px;
+                margin-left: 20px;
+                color: blueviolet;
+                margin-top: -5px;
+            }
+
+            .topleft p:nth-child(2) {
+                font-size: 15px;
+                margin-top: 10px;
+            }
+
+            .topleft p:nth-child(3) {
+                margin-top: -10px;
+                margin-bottom: 20px;
+            }
+
+            .topright {
+                width: 120px;
+                height: 200px;
+                position: absolute;
+                top: 0;
+                left: 230px;
+            }
+
+            .topright img {
+                width: 120px;
+                height: 170px;
+                margin-top: 30px;
+            }
+
+            .bottom {
+                width: 350px;
+                height: 200px;
+                background-color: orange;
+                transform: rotate(-1deg);
+                position: absolute;
+                left: 100px;
+                top: 250px;
+                box-shadow: 0 0 10px black;
+            }
+
+            .bottom img {
+                width: 70px;
+                height: 70px;
+                border: 5px solid white;
+                border-radius: 50%;
+                margin-top: 50px;
+                margin-left: 10px;
+                float: left;
+            }
+
+            .bottom p{
+                overflow: hidden;
+                font-size: 10px;
+                color: blueviolet;
+                padding:20px;
+                text-indent: 2em;
+                margin-top: 40px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <main>
+            <div class="top">
+                <div class="topleft">
+                    <img src="logo.png" alt="">
+                    <p>石昆龙</p>
+                    <p>HTML5讲师</p>
+                    <p>地址：郑州市经开区河南通讯产业园6楼西南四</p>
+                    <p>手机：13137071581 &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QQ：1326661234</p>
+                    <p>电子邮箱：xx@zhitopright100.com</p>
+                </div>
+                <div class="topright">
+                    <img src="pic.png" alt="">
+                </div>
+            </div>
+            <div class="bottom">
+                <img src="photo.jpg" alt="">
+                <p>学好一门技术的唯一方法是使用它，在使用它的过程中才能真正学会它，
+                    在使用它的过程中才能真正学会它，如果能够在使用它的过程体会到乐趣，
+                    及时学习的最佳状态。</p>
+            </div>
+        </main>
+    </body>
+
+</html>

@@ -1,4 +1,4 @@
-ctrl+shirt+m 浏览器手机端显示 ctrl+f 查找 ctrl+h 替换 ctrl+g 跳转到行
+ctrl+shirt+m 浏览器手机端显示 ctrl+f 查找 ctrl+h 替换 ctrl+g 跳转到行 hbulid中ctrl+d删除行
 五大主流浏览器及其内核 
 IE(trident) 	Firefox(Gecko) 	Chrome(webkit/blink)  Safari(webkit)  Opera(presto/webkit)
 浏览器兼容
@@ -13,6 +13,13 @@ IE(trident) 	Firefox(Gecko) 	Chrome(webkit/blink)  Safari(webkit)  Opera(presto/
 html标签不能设置外边距可以设置边框内边距 body什么都可以设置而且不论文档多少 背景都可以铺满全屏
 定位
 盒子margin左上角相对于父元素padding左上角进行定位！！！
+相对定位 position: relative;
+移动时自身所在位置发生改变，但是原来位置依然占据，别人去不了，自身移动会覆盖其他元素，但是不脱离文档流
+绝对定位 position:absolute;
+移动时自身所在位置发生改变,脱离文档流
+固定定位 position: fixed;
+固定在浏览器指定位置,脱离文档流
+
 
 选择器
 两个选择器加空格是父子选择 不加空格是并列选择
@@ -57,7 +64,7 @@ sapn+p{} 找到与某元素下方紧邻的元素
             /* 景深 */
             perspective: 1000px;
             /* 视角 X轴正方向 Y轴正方向 */
-            perspective-origin: 100% 160%;
+            perspective-origin: 100% 160%;   前三条在3d旋转对象父元素里 旋转锚点在3d旋转对象里
             /* 旋转锚点 X轴的值 y轴的值*/
             transform-origin: 0% 50%;
 
@@ -98,7 +105,11 @@ css中的运算
 translate 平移 rotate 旋转 scale(数字m) 原比例乘以数字缩放倍数m
  /* 等比缩放 */
  snow.style.transform = "scale(" + (Math.random() * 0.4 + 0.2) + ")";
-        #hours {
+            transition: transform 1s linear;
+              section:nth-child(5):active {
+            transform: rotateY(-130deg);  
+             }
+        #hours {   
             /* 调整锚点 */
             transform-origin: 50% 83.33%;
             /* 动画运行 :动画名称 周期时间 线性的 无限循环 */
@@ -166,10 +177,18 @@ setTimeout(start, 500); 先不运行 0.5秒后运行
         var week=now.getDay();
 // 月份从0开始，星期从星期日开始，星期日为0
 
-随机数
+随机数 取整数 取数字
 Math.floor 取下整数  Math.ceil 取上整数
 Math.random() 随机数0--1【0，1）取到0取不到1
- var m = Math.floor(Math.random() * 0.5 + 0.25);
+ 例： var m = Math.floor(Math.random() * 0.5 + 0.25);
+ Number(music.duration.toFixed(2)) 数字取两位小数（先转为字符串类型的两位小数，再转为数字类型）
+
+监听函数
+	   //监听函数，监听aud的歌曲时间改变 监听属性值变化false ture 
+		aud.addEventListener("timeupdate", function() {});
+        addEventListener("ended", next);
+
+
 
 音频播放
 <audio src="费玉清-一剪梅.mp3" controls autoplay loop></audio>
@@ -200,8 +219,11 @@ onKeyUp 当键盘上某个按键被按放开时触发的事件[注意:页面内�
         play(event.keyCode - 49);
     }
 
-ASSII码
-//把数字转化为ASSII对应的字符
+ASCII码
+ASCII码48--57 对应数字 0--9
+ASCII码65--90 对应大写字母 A--Z
+ASCII码97--122 对应小写字母 a--z
+//把数字转化为ASCII对应的字符
         code = Math.floor(Math.random() * 26) + 65;
         char.innerHTML = String.fromCharCode(code);
 

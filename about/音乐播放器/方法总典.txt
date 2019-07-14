@@ -36,6 +36,9 @@ sapn+p{} 找到与某元素下方紧邻的元素
         background-position: 50% 50%;
          /* 从中心无限圆环延伸 */
         background: radial-gradient(circle, red, green, blue);
+钢琴设置用了点击后下部分变灰色        
+div:active {background-image:linear-gradient(rgba(255, 255, 255, 0),rgba(255, 255, 255, 0), rgba(150, 150, 150, 1));}
+
 阴影
  /* 文字阴影：x轴偏移 Y轴偏移  阴影模糊和范围 阴影颜色 */
             text-shadow: 0px 0px  10px black;
@@ -90,6 +93,14 @@ sapn+p{} 找到与某元素下方紧邻的元素
             align-items: center;
             /*弹性布局方向   direction方向 column列布局 row行排列（默认）*/
             flex-direction: column;
+main { display: flex; }
+main div { height: 100%;
+            /* 对父元素等比分割 */
+            flex-grow: 1; }
+
+宽高设置
+width: 100%;height: 100%;
+max-width: 800px;max-height: 400px;最大宽最大高
 
 定义盒子大小(指定谁，宽高就在谁身上) 默认content-box 
     /* box-sizing: content-box; */
@@ -150,6 +161,7 @@ function action(e) {
 }
 
 获取屏幕宽高
+max
 js方法： var w = document.documentElement.clientWidth;
     var h = document.documentElement.clientHeight;
 jquery方法： var w = $(window).width();
@@ -267,7 +279,6 @@ onChange 当前元素失去焦点并且元素的内容发生改变而触发的�
 onFocus 当某个元素获得焦点时触发的事件
 onReset 当表单中RESET的属性被激发时触发的事件
 onSubmit 一个表单被递交时触发的事件
-
 
 
 

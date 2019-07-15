@@ -2,199 +2,63 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>跑马灯</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>跑马灯</title>
 </head>
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-    }
+        * {
+                margin: 0;
+                padding: 0;
+        }
 
-    html,
-    body {
-        width: 100%;
-        height: 100%;
-    }
-
-    body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-    }
-
-    main {
-        width: 300px;
-        height: 20px;
-        display: flex;
-
-    }
-
-    main div {
-        border-radius:10px; 
-        flex-grow: 1;
-        margin: 1px;
-        height: 100%px;
-        border: 1px solid red;
-        color: o;
-    }
-    /* main div:nth-child(1){
-        animation: pao 2s infinite;
-    }
-    @keyframes pao{
-        0%{
-background-color: red;
+        html,
+        body {
+                width: 100%;
+                height: 100%;
         }
-        20%{
-background-color: green;
+        div {   display: inline-block;
+                border-radius: 10px;
+                margin: 1px;
+                width: 20px;
+                height: 10px;
         }
-        40%{
-background-color: black;
-        }
-        60%{
-background-color: blue;
-        }
-        80%{
-background-color: blueviolet;
-        }
-        100%{
-background-color: red;
-        }
-    }
-    main div:nth-child(2){
-        animation: pao1 2s infinite;
-    }
-    @keyframes pao1{
-        0%{
-background-color: blueviolet;
-        }
-        20%{
-background-color: red;
-        }
-        40%{
-background-color: green;
-        }
-        60%{
-background-color: black;
-        }
-        80%{
-background-color: blue;
-        }
-        100%{
-background-color: blueviolet;
-        }
-    }
-    main div:nth-child(3){
-        animation: pao2 2s infinite;
-    }
-    @keyframes pao2{
-        0%{
-background-color: blue;
-        }
-        20%{
-background-color: blueviolet;
-        }
-        40%{
-background-color: red;
-        }
-        60%{
-background-color: green;
-        }
-        80%{
-background-color: black;
-        }
-        100%{
-background-color: blue;
-        }
-    }
-    main div:nth-child(4){
-        animation: pao3 2s infinite;
-    }
-    @keyframes pao3{
-        0%{
-background-color: black;
-        }
-        20%{
-background-color: blue;
-        }
-        40%{
-background-color: blueviolet;
-        }
-        60%{
-background-color: red;
-        }
-        80%{
-background-color: green;
-        }
-        100%{
-background-color: black;
-        }
-    }
-    main div:nth-child(5){
-        animation: pao4 2s infinite;
-    }
-    @keyframes pao4{
-        0%{
-background-color: green;
-        }
-        20%{
-background-color: black;
-        }
-        40%{
-background-color: blue;
-        }
-        60%{
-background-color: blueviolet;
-        }
-        80%{
-background-color: red;
-        }
-        100%{
-background-color: green;
-        }
-    } */
 </style>
 
 <body>
-    <main>
-            <div id="class0"></div>
-        <div id="class1"></div>
-        <div id="class2"></div>
-        <div id="class3"></div>
-        <div id="class4"></div>
-        <div id="class5"></div>
-    </main>
 </body>
 <script>
-var arr;
-var jishu = 0;
-setInterval(function(){
-    if(jishu == 0){
-      arr = ['red',"green","blue","black","purple","orange"];
-   }
-   if(jishu >= 1){
-    a=arr[arr.length-1];
-    for(var i=arr.length-1;i>0;i--){
-        arr[i]=arr[i-1];
-    }
-    arr[0] = a;
-   }
-   for(var i=0;i<6;i++){
-       document.getElementsByTagName("div")[i].style.backgroundColor = arr[i];
-   }
-    jishu++;
-if(jishu >= 6){
-    jishu = 0;
-}   
-},200);
-
-
-
-
-
-
+        var n = window.prompt("请输入灯数：是六的几倍", 2);
+        var arr = ['red', "green", "blue", "black", "purple", "orange"];
+        var jishu = 0;
+        for (var i = 0; i < 6 * n; i++) {
+                var div = document.createElement("div");
+                document.body.appendChild(div);
+        }
+        setInterval(function () {
+                if (jishu == 0) {
+                        for (var i = 0; i < n; i++) {
+                                for (var j = 0; j < 6; j++) {
+                                        arr[6 * i + j] = arr[j];
+                                }
+                        }
+                }
+                if (jishu >= 1) {
+                        a = arr[arr.length - 1];
+                        for (var i = arr.length - 1; i > 0; i--) {
+                                arr[i] = arr[i - 1];
+                        }
+                        arr[0] = a;
+                }
+                for (var i = 0; i < 6 * n; i++) {
+                        document.getElementsByTagName("div")[i].style.backgroundColor = arr[i];
+                }
+                jishu++;
+                if (jishu >= 6 * n) {
+                        jishu = 0;
+                }
+        }, 200);
 </script>
+
 </html>

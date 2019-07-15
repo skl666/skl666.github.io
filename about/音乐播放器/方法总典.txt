@@ -27,8 +27,7 @@ sapn+p{} 找到与某元素下方紧邻的元素
  ul li:nth-child(2){}开始是1 li的父元素ul中 第二个子元素 是li 和li的父元素ul中  第二个孙元素  是li。
  ul li:nth-of-type(2){}开始是1  li的父元素ul中 第二个 li子元素  和li的父元素ul中  第二个 li孙元素 。
 
-背景图片
-
+背景图片背景颜色
         background-image: url(clock.jpg);
         background-size: 500px auto;
         background-repeat: no-repeat;
@@ -38,6 +37,9 @@ sapn+p{} 找到与某元素下方紧邻的元素
         background: radial-gradient(circle, red, green, blue);
 钢琴设置用了点击后下部分变灰色        
 div:active {background-image:linear-gradient(rgba(255, 255, 255, 0),rgba(255, 255, 255, 0), rgba(150, 150, 150, 1));}
+背景颜色
+  /* rgb(255,255,0)   rgba(255,255,0,1) 最后一位表示透明度      */
+
 
 阴影
  /* 文字阴影：x轴偏移 Y轴偏移  阴影模糊和范围 阴影颜色 */
@@ -280,18 +282,118 @@ onFocus 当某个元素获得焦点时触发的事件
 onReset 当表单中RESET的属性被激发时触发的事件
 onSubmit 一个表单被递交时触发的事件
 
+未知区域知识
+  console.log(undefined&&2);遇假则返，否则返回最后一位
+   console.log(undefined || 2); 遇真则返，否则返回最后一位
+ 
 
 
+开始正课
+一、html简介
+HTML：超文本标记语言 Hypertext Mark-up Language;
+比如:<a> </a>标签 （这些标签都是预定义好的）
+
+XML：可拓展的标记语言：Extendsible Mark-up Language;
+比如：<name></name> <ab></ab> <people />(只要符合标签的特点就行)
+
+HTML是XML的拓展语言，用于设计网页，他不算是一种编程语言。
+
+HTML:她比之前的HTML拓展了一些新的功能（新的标签，新的样式，新的语法...）
+狭义上来说HTML5是HTML的第五个版本 ；广义上来说HTML5是最新一代WEB开发技术的综合，包括HTML5,CSS3,ES6
+
+一个网页的本质就是一个HTML文本，里面包含一段HTML标签。HTML文本本质上及时一个纯文本文件。
+当使用代码编辑器（HBuilder,VSCode,SublimeText,Dreamwewver,WebStorm）打开时，看见的就是文件的源码，
+当使用浏览器打开时，浏览器会对其中的HTML代码进行解析，将解析之后的网页显示在浏览器窗口中
 
 
+二、标签结构
 
+HTML标签从组成结构划分：单标签和双标签。
+单标签：<xx>
+在传统的HTML版本中，单标签中需要加/ ，</ xx> 但是从H5开始，单标签不需要再添加闭合 /,<xx>
+双标签：<xx></ xx>
+前面的<xx>叫开始标签 后面的</ xx>叫结束标签
 
+HTML标签从内容可分为三部分：标签名 ，标签属性 ，标签内容。
+<xx p1="t" p2="f f1" k> 标签内容</ xx>
+xx标签名
+p1="t" 标签属性，其中 p1是属性名，t是属性值。一个标签可以有多个属性，每个属性之间用空格隔开
+一个属性可以没有属性值，也可以有多个属性值。
+content是标签内容
 
+HTML标签从布局方式可分为：行元素 块元素 行内块
 
+<!--  DOC:Document TYPE:类型  定义文档类型(使用HTML的哪个版本)，当前类型就是HTML5类型 -->
+<!DOCTYPE HTML>
+<!-- html标签是一个网页的根标签、一个网页必须有且只能有一个html标签-->
+<html>
+<!-- head标签是页面的头标签，用于记录本页面的基本信息，例如：页面的字符集，页面的标题 ，页面的logo-->
+<head>
+    <!-- meta标签用于设置页面元数据，例如页面的字符集（编码格式） -->
+    <meta charset="utf-8">
+    <!-- title标签，用于设置页面的标题 -->
+    <title>常用的HTML标签</title>
+</head>
+<!-- body标签是页面的主体部分，body中的内容显示在页面窗口中 -->
+<body>
 
+三、 css css链接方式 和 选择器 权重 （三种css链接方式： 外部样式表  内部样式  行间样式(内联样式) ）
+  CSS：层叠样式表 Cascading Style Sheet
+    <!--外部样式表  -->  <link rel="stylesheet" href="style.css">
+    /* 内部样式  */
+    <style> 
+权重：    0             1      1       10       10      10    100     1000    无穷大    （256进制）
+       * (通配符) 标签名选择器 伪元素 类选择器 属性选择器 伪类 id选择器 行间样式 !important
+        选择器{样式名：样式值；}
+            选择器1，选择器2{}分组选择器
+            选择器1 选择器2{}后代选择器
+            选择器1选择器2{}并列选择器
+            选择器1>选择器2{}直接子元素选择器  
+    </style>
+<body>
+    <!-- 所有可视的元素，都可以通过style属性添加样式，通过这种方式添加的样式叫行内样式（内联样式） -->
+    <p style="color: red">行间样式(内联样式)</p>
+</body>
 
+四、注释
+<!-- ctrl+/ 生成注释 -->
+<!-- 这种出现在HTML中（标签对中） -->
+ /* */这种一般出现在CSS中（style标签，单独的CSS文件，也可以出现在js中）
+//这种一般出现在JS中（script标签，单独的js文件）
+为什么要写注释：
+1、注释可以作为代码的说明，供自己或者别人观看。
+2、将代码注释起来，代码就不会再执行，可以方便删除和还原。
 
+五、转义字符 空格 大于号 小于号
+转义字符（十进制） 对应的符号
+&lt;(&#60;)         <
+&gt;(&#62;)         >  
+&nbsp;(&#160;)      空格(小空格，一个字母宽度)
+&amp;(&#38;)        &
+&emsp;（&#x3000;）  空格（大空格，一个汉字的宽度）
+&quot;(&#40;)   
 
+六、文本文字基础样式
+       /* 字体颜色 */
+        color:red;
+        /* 字体大小 */
+        font-size: 50px;
+        /*  字体类型*/
+        font-family: 宋体;
+        /* 字体样式  italic 斜体  normal 正常*/
+        font-style:oblique;
+        /* 字体粗细 100-900 bold=700 normal=400 */
+        font-weight: 500px;
+        /* 文字对齐方式  left center right 左 中 右*/
+        text-align: center;
+         /* 首行缩进两个字符 */
+        text-indent: 2em;
+        /* 背景颜色
+         字符串表示：  pink 粉红色  purple 紫色 cyan 青色 
+        十六进制表示颜色: 三位（0-15）：#f00  0123456789abcdef 六位（0-255）: #ff4400 
+        /* 红橙黄绿青蓝紫 */
+        /* rgb(255,255,0)  rgba(255,255,0,1) 最后一位表示透明度 */
+         background-color: #f40;
 
 
 

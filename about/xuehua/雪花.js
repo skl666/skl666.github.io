@@ -8,7 +8,7 @@ function flake() {
     var left = w * Math.random();
     var top = h * Math.random();
 
-    snow.style.transform = "scale(" + (Math.random() * 0.4 + 0.2) + ")";
+    snow.style.transform = "scale(" + (Math.random() * 0.05 + 0.01) + ")";
     snow.style.position = "absolute";
     snow.style.left = left + "px";
     snow.style.top = top + 'px';
@@ -21,8 +21,8 @@ function flake() {
         }
         snow.style.left = left + "px";
         snow.style.top = top + "px";
-    }, 1);
+    }, 10);
 }
-for (var i = 0; i < 50; i++) {
+for (var i = 0; i < 250; i++) {
     flake();
 }

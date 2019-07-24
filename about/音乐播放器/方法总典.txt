@@ -1,4 +1,4 @@
-ctrl+shirt+m 浏览器手机端显示 ctrl+f 查找 ctrl+h 替换 ctrl+g 跳转到行 hbulid中ctrl+d删除行
+﻿ctrl+shirt+m 浏览器手机端显示 ctrl+f 查找 ctrl+h 替换 ctrl+g 跳转到行 hbulid中ctrl+d删除行
 五大主流浏览器及其内核 
 IE(trident) 	Firefox(Gecko) 	Chrome(webkit/blink)  Safari(webkit)  Opera(presto/webkit)
 浏览器兼容
@@ -16,7 +16,7 @@ html标签不能设置外边距可以设置边框内边距 body什么都可以�
 相对定位 position: relative;
 移动时自身所在位置发生改变，但是原来位置依然占据，别人去不了，自身移动会覆盖其他元素，但是不脱离文档流
 绝对定位 position:absolute;
-移动时自身所在位置发生改变,脱离文档流
+移动时自身所在位置发生改变,脱离文档流，如果父元素以上没有设置定位信息，这相对于html文档定位
 固定定位 position: fixed;
 固定在浏览器指定位置,脱离文档流
 
@@ -28,6 +28,9 @@ sapn+p{} 找到与某元素下方紧邻的元素
  ul li:nth-of-type(2){}开始是1  li的父元素ul中 第二个 li子元素  和li的父元素ul中  第二个 li孙元素 。
 
 背景图片背景颜色
+ /* 背景图 url中写图片的路径 当前路径写 ./ 可不写 上级中的写 ../美女.jpg */
+     /* 背景图固定，不随页面发生滚动 相当于背景图固定定位 */
+        background-attachment: fixed;
         background-image: url(clock.jpg);
         background-size: 500px auto;
         background-repeat: no-repeat;
@@ -47,9 +50,9 @@ div:active {background-image:linear-gradient(rgba(255, 255, 255, 0),rgba(255, 25
 
 对齐方式
             background-position: center bottom;
-            /* 行元素的子物体居中 */
+            /* 行元素的子物体居中 */（好像只能是文本，就像p里面的字体或者p里面的图片）
             text-align: center;
-            /*行元素的子元素下对齐 */
+            /*行元素的子元素下对齐 */（好像只能是文本，就像p里面的字体或者p里面的图片）
             vertical-align: bottom;
 
 3D转换
@@ -162,6 +165,11 @@ function action(e) {
     e.pageY =  ；鼠标点击点在屏幕上的Y坐标
 }
 
+js 调控 css
+document.getElementById("id").style.top = 15 + "px";
+jquery调控 css
+ $(this).css({ top: 15px, left: 16px,transform: "rotate(" + rot + "deg)",});
+
 获取屏幕宽高
 max
 js方法： var w = document.documentElement.clientWidth;
@@ -177,8 +185,8 @@ window.onresize = function () {
 
 定时器
 start 函数名 500 时间
-setInterval(start, 500); 先运行 0.5秒后再运行
-setTimeout(start, 500); 先不运行 0.5秒后运行
+setInterval(start, 500); 先不运行 0.5秒后再循环运行
+setTimeout(start, 500); 先不运行 0.5秒后运行 不循环只运行一次
 
 内置时间对象
         var now = new Date();
@@ -288,7 +296,9 @@ onSubmit 一个表单被递交时触发的事件
  
 
 
+
 开始正课
+7月15日
 一、html简介
 HTML：超文本标记语言 Hypertext Mark-up Language;
 比如:<a> </a>标签 （这些标签都是预定义好的）
@@ -348,7 +358,8 @@ HTML标签从布局方式可分为：行元素 块元素 行内块
             选择器1，选择器2{}分组选择器
             选择器1 选择器2{}后代选择器
             选择器1选择器2{}并列选择器
-            选择器1>选择器2{}直接子元素选择器  
+            选择器1>选择器2{}直接子元素选择器 
+            选择器1~选择器2 普通兄弟选择器
     </style>
 <body>
     <!-- 所有可视的元素，都可以通过style属性添加样式，通过这种方式添加的样式叫行内样式（内联样式） -->
@@ -394,6 +405,194 @@ HTML标签从布局方式可分为：行元素 块元素 行内块
         /* 红橙黄绿青蓝紫 */
         /* rgb(255,255,0)  rgba(255,255,0,1) 最后一位表示透明度 */
          background-color: #f40;
+
+7月16日 
+       
+文本标签
+ 实现文本加粗的三种方法：
+  <!-- strong标签表示该标签的内容要强调显示 -->
+    <!-- b标签仅仅是只是一个普通的字体加粗效果 -->
+    <!-- 通过css样式设置加粗，也仅仅是添加加粗效果 -->
+实现文本删除的三种方法：
+   <!-- s标签仅仅只是添加一个删除线 -->
+    <!-- del标签具有语义，表示本标签中的内容被删除 -->
+    <!-- 通过css样式设置删除线也仅仅只是添加一个删除线 -->
+
+行元素 块元素 行内块元素
+
+块元素：
+块元素的代表：div section h1-h6 p hr ul li（li是块元素 但是display是list-item）
+块元素特点：独占一行，可以设置宽高，不设置宽高时，宽和父元素等宽，高取决于自身内容
+块元素可以通过magin:0 auto;设置在父元素居中
+
+行元素 (可以设置line-height)：
+行元素代表：span b a s del strong 
+行元素特点：不会独占一行，多个行元素之间从左到右依次排列，排不下自动换行不能设置宽高，宽高只取决于自身内容
+行元素与行元素代码之间的换行将来会生成空白的文本节点（之间有个间距）   
+
+行内块
+行内块代表： image（设置宽，高会等比缩放，这是特例，其他行内块改变宽 高不会变） input button 
+行内块特点：可以改变宽高 不设置宽高，宽高取决于自身内容 不独占一行，从左到右依次排列，排不下自动换行
+
+流式布局和文档流
+
+在HTML页面中，默认使用“流式布局”。
+流式布局：在一个元素中，它的子元素都拥有自己的位置，子元素采用从左到右（行元素 行内块），或者从上到下（块元素）的方式排列布局。
+
+文档流：在一个元素中，流式布局的元素队列，在文档流中的子元素都会有自己默认的位置，如果某个子元素脱离文档流，
+那么它就不在参与流式布局，不再拥有自己的位置。
+块元素如果脱离文档流，那么就不能参照父元素的宽度定宽，所以脱离了文档流的块元素如果没有内容，必须设置宽高，如有内容，宽高取决于内容。
+
+a标签页面跳转（设置书签）
+ <a href="#d1">一</a>  <div id="d1">二</div> 点一跳转二
+
+表格 <!--colspan 和并列 在一行中占几列 -->  <!--rowspan 行合并 在一列中占几行 -->
+ <table>
+        <!-- thead:表头 -->
+        <thead>
+         <caption>课程表</caption>
+            <tr><!-- th: 表示表头行中的单元格（字体加粗） -->
+                <th>星期1</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td rowspan="2">上午</td> </tr>
+相对定位 绝对定位 固定定位 粘性定位   position 表示元素的定位方式
+相对定位：         
+ static 静态的（默认） 表示静态定位，不能设置位置
+ relative 表示相对定位
+1，相对于本身在文档流中原有的位置进行定位
+2，相对定位的元素的元素不会脱离文档流，参与流式布局
+3，可以通过top left bottom right 样式进行位置的设置
+绝对定位 
+  /* absolute :表示绝对定位 */
+1, 相对于离自己最近的有定位信息（position为非静态的）的上层元素进行定位
+2，绝对定位脱离文档流，不参与流式布局，在父元素文档流中没有她的位置了。
+3，如果不设置宽高，那么绝对定位的元素宽高取决于内容，并且width:100%; height: 100%;和定位参照标签一样宽高（而不是父标签）
+4，可以通过top left 样式进行位置的设置   
+固定定位 
+   /* fixed :固定定位 */
+1, 相对于浏览器窗口进行定位
+2，固定定位脱离文档流，不参与流式布局，在父元素文档流中没有她的位置了。
+3，如果不设置宽高，那么固定定位的元素宽高取决于内容，并且width:100%; height: 100%;和定位参照标签一样宽高（而不是父标签）
+4，可以通过top left 样式进行位置的设置 
+     
+粘性定位 sticky
+1,相对于根标签html进行定位 
+2,不会脱离文档流，可以使用top等设置多远距离停止滚动
+
+7月17日
+
+CSS伪类  伪元素
+ /* 链接伪类先后顺序被称为LVHA顺序 link — :visited — :hover — :active。 */
+ a:link 链接未点击状态   a:visited 用户点击过后 a:hover 用于用户使用鼠标放到一个元素上面（没有激活它）的状态 
+ a:focus 获取焦点  a:active  当用鼠标交互时，它代表按下按键和松开按键之间的时间
+p::first-letter  选中块元素第一行的第一个字   p::first-line 选中块元素的第一行
+
+有序(ol)列表和无序列表（ul）ul:unordered ol:ordered
+删除列表中的每一项前面的修饰符号 
+/* list-style： circle 实心的圆 disc 空心的圆 decimal 十进制数字 upper/lower-alpha 大小写字母*/
+ul自带16px的上下外边距和40px的左内边距  li是块元素  display：list-item 
+    <!-- dl: define list,定义列表-->
+    <!-- dt: define title ,定义标题 -->
+    <!-- dd: define data , 定义内容-->
+    <!-- 自己总结 也可用于图文混编 --
+
+ 背景图片
+background-attachment: fixed; /* 背景图固定，不随页面发生滚动 相当于背景图固定定位 */  
+background-repeat：round; 通过压缩或者拉伸直到铺满整个元素 压缩或者拉伸的标准：如果多出的空间过半就压缩否则就拉伸 */
+background-repeat: space;  第一张最后一张不动，中间的留有空白然后尽可能多的显示，但不会压缩放大图片并且position不可用 除非只有一张图
+背景大小有两个特殊的值 cover contain   contain :纵向铺满 ，横向等比缩放（缩）不一定铺满*/ /* cover 横向铺满，纵向等比缩放（放）一定铺满 */
+
+图片精灵 （和字体图标很像，但是字体图标是通过改字体大小改宽高 这个是直接改背景图片的载体宽高）
+.icons { width: 72px; height: 72px; background-image: url(icons.jpg);  background-size: 700% 700%; }
+.icons-lookbook{   background-position: 0% 0%;  }
+.icons-uphand{   background-position: -100% 0%;  } 
+ 
+ 元素文本内容溢出
+  <div id="box">  什么是精灵图 这字体还有很多div宽度放不下了都</div>  默认情况下，元素溢出的内容会显示在元素之外
+/* overflow: hidden; */   溢出的部分内容不会显示
+ overflow: scroll;   溢出的部分通过滚动的部分来显示  overflow-x：scroll; overflow-y：scroll; x方向y方向发生滚动*/
+white-space: nowrap;   文字不换行
+white-space:pre: ; 不换行，还能保留原有换行和空格 */
+ white-space:pre-wrap ;  换行，还能保留原有换行和空格 */
+text-overflow: ellipsis;  /* 文字溢出打点显示 */
+ 
+ 文字溢出打点显示 三步走
+white-space: nowrap;
+overflow: hidden;      
+text-overflow: ellipsis;
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+                                         
+
+
+
+
+
+
+
+
+
+
 
 
 

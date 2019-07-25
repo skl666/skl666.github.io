@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.css">
+    <title>饿了么</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+
+        }
+
+        body {
+            -webkit-user-select: none;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .clear::after {
+            display: block;
+            content: "";
+            clear: both;
+        }
+
+        /* 首页 */
+        .souye {
+            width: 100%;
+            height: auto;
+            margin-bottom: 50px;
+        }
+
+        /* 头部蓝色 */
+        header {
+            position: sticky;
+            top: -43px;
+            font-weight: 900;
+            color: white;
+            background-color: #0af;
+            width: 100%;
+            height: 90px;
+            overflow: hidden;
+            z-index: 999;
+        }
+
+        header>p {
+
+            height: 40px;
+            width: 90%;
+            margin: 5px auto;
+        }
+
+        header>p i:nth-of-type(1) {
+            margin-right: 5px;
+            line-height: 40px;
+            vertical-align: bottom;
+        }
+
+        header>p i:nth-of-type(2) {
+            font-size: 10px;
+            margin-left: 15px;
+            line-height: 40px;
+            vertical-align: bottom;
+        }
+
+        header>p span {
+            line-height: 40px;
+            display: inline-block;
+            width: 40%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            vertical-align: bottom;
+        }
+
+        header>div {
+            top: 15px;
+            width: 90%;
+            height: 32px;
+            margin: 0 auto;
+
+        }
+
+        header>div input {
+            width: 100%;
+            height: 32px;
+        }
+
+        /* 中间十个商品 */
+        .main {
+            width: 100%;
+
+        }
+
+        .main>div:nth-of-type(1) {
+            width: 100%;
+            height: 160px;
+        }
+
+        .main>div:nth-of-type(1) figure {
+            box-sizing: border-box;
+            width: 20%;
+            height: 50%;
+            background-color: white;
+            float: left;
+        }
+
+        .main>div:nth-of-type(1) figure img {
+            margin: 12px 16px 0 16px;
+            width: 40px;
+            height: 40px;
+        }
+
+        .main>div:nth-of-type(1) figure figcaption {
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .main>div:nth-of-type(2) {
+            width: 100%;
+            height: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* background-color: red; */
+        }
+
+        .main>div:nth-of-type(2) div:nth-child(1) {
+            width: 10px;
+            height: 2px;
+            background-color: gainsboro;
+            margin-right: 3px;
+        }
+
+        .main>div:nth-of-type(2) div:nth-child(2) {
+            width: 10px;
+            height: 2px;
+            background-color: darkgray;
+        }
+
+        /* 推荐商家 */
+        .tuijian {
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            /* background-color: green; */
+            margin: 15px 0 8px 0;
+            font-size: 16px;
+        }
+
+        .tuijian span {
+            display: inline-block;
+            width: 20px;
+            height: 2px;
+            background-color: darkgray;
+            vertical-align: middle;
+        }
+
+        /* 分类 */
+        .fenlei {
+            /* background-color: red; */
+            overflow: hidden;
+            width: 100%;
+            height: 30px;
+        }
+
+        .fenlei ul {
+            width: 100%;
+            height: 30px;
+            /* margin: 5px 0; */
+            line-height: 30px;
+        }
+
+        .fenlei ul li {
+            font-size: 14px;
+            color: rgb(102, 102, 102);
+            text-align: center;
+            list-style: none;
+            width: 25%;
+            float: left;
+        }
+
+        .fenlei ul li i {
+            margin-left: 3px;
+        }
+
+        /* 下面产品 */
+        .canpin {
+            box-sizing: border-box;
+            width: 100%;
+            height: 165px;
+            /* background-color: red; */
+            border-bottom: 1px solid #ddd;
+            padding-top: 15px;
+        }
+
+        .canpin>div {
+            float: left;
+        }
+
+        /* 左面部分 */
+        .canpin>div:nth-child(1) {
+            width: 22%;
+            height: 100%;
+        }
+
+        .canpin>div:nth-child(1) div {
+            overflow: hidden;
+            margin: 0 auto;
+            width: 64px;
+            height: 64px;
+            border: 1px solid #ddd;
+            position: relative;
+        }
+
+        .canpin>div:nth-child(1) div div {
+            opacity: 0;
+            text-align: center;
+            box-sizing: border-box;
+            padding-top: 30px;
+            font-size: 9px;
+            position: absolute;
+            left: -23px;
+            top: -23px;
+            width: 45px;
+            height: 45px;
+            border-bottom: 1px solid rgb(99, 218, 99);
+            background-color: rgb(99, 218, 99);
+            color: white;
+            transform: rotate(-45deg);
+        }
+
+        .canpin>div:nth-child(1) div img {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 右面部分 */
+        .fengniao {
+            opacity: 0;
+            background-color: #0af;
+            padding: 0 3px;
+            color: white !important;
+        }
+
+        .fengniao.xianshi {
+            opacity: 1;
+        }
+
+        .canpin>div:nth-child(2) {
+            width: 78%;
+            height: 100%;
+            background-color: white;
+        }
+
+        .you {
+            box-sizing: border-box;
+            padding-left: 10px;
+        }
+
+        .you>p:nth-child(1) {
+            position: relative;
+            font-size: 15px;
+            font-weight: 900;
+            color: black;
+        }
+
+        .you>p:nth-child(1)>i:nth-child(1) {
+            display: none;
+            background-color: yellow;
+            padding: 0 3px;
+            font-style: normal;
+            font-size: 13px;
+            margin-right: 5px;
+        }
+
+        .you>p:nth-child(1)>i:nth-child(1).pinpai {
+            display: inline-block;
+        }
+
+        .you>p:nth-child(2) {
+            margin: 5px 0;
+            font-size: 12px;
+            color: rgb(102, 102, 102);
+            position: relative;
+        }
+
+        .you>p:nth-child(2) i {
+
+            color: rgb(238, 225, 38);
+        }
+
+        .you>p:nth-child(3) {
+            position: relative;
+            font-size: 13px;
+            color: rgb(102, 102, 102);
+        }
+
+        .you>p:nth-child(4) {
+            height: 20px;
+            margin: 5px 0;
+        }
+
+        .you>p:nth-child(4)>i {
+            padding: 0 5px;
+            display: inline-block;
+            font-style: normal;
+            background-color: whitesmoke;
+            font-size: 12px;
+            color: rgb(102, 102, 102);
+            line-height: 20px;
+            text-align: center;
+        }
+
+        .you>p:nth-child(4)>i:nth-child(1) {
+            margin-right: 40px;
+        }
+        .you>p:nth-child(4)>i:nth-child(2) {
+            color: black;
+        }
+        .you>p:nth-child(4)>i:nth-child(3) {
+            color:rgb(211, 108, 71);
+            padding-left:5px;
+            font-size: 11px;
+        }
+        .you>p:nth-child(4)>i:nth-child(3)>b {
+            padding-right: 2px;
+        }
+        .you>p:nth-child(5) {
+            font-size: 12px;
+            color: rgb(102, 102, 102);
+        }
+
+        .you>p:nth-child(6) {
+            margin: 5px 0;
+            font-size: 12px;
+            color: rgb(102, 102, 102);
+        }
+
+        .red {
+            background-color: rgb(223, 59, 59);
+        }
+
+        .lv {
+            background-color: rgb(60, 196, 71);
+        }
+
+        .yellow {
+            background-color: rgb(209, 183, 32);
+        }
+
+        .you>p:nth-child(5)>i:nth-child(1) {
+            position: relative;
+            font-size: 12px;
+            color: darkgray;
+            color: white;
+            font-style: normal;
+            padding: 2px;
+            border-radius: 3px;
+        }
+
+        .you>p:nth-child(6)>i:nth-child(1) {
+            color: white;
+            font-style: normal;
+            padding: 2px;
+            border-radius: 3px;
+        }
+
+        .moveright {
+            position: absolute;
+            right: 10px;
+            font-size: 11px;
+            color: darkgray;
+            font-weight: normal;
+            line-height: 18px;
+        }
+
+        /* 发现 */
+        .faxian {
+            overflow: hidden;
+            width: 100%;
+            height: 740px;
+            background-color: #f5f5f5;
+        }
+
+        .faxian main {
+            background-color: white;
+        }
+
+        .faxian main>div:nth-child(1) {
+            box-sizing: border-box;
+            padding-top: 18px;
+            width: 150px;
+            height: 80px;
+            margin: 0 auto;
+        }
+
+        .faxian main>div:nth-child(1)>div:nth-child(1) span:nth-child(1) {
+            display: inline-block;
+            height: 2px;
+            width: 15px;
+            background-color: black;
+            vertical-align: middle;
+        }
+
+        .faxian main>div:nth-child(1)>div:nth-child(1) span:nth-child(2) {
+            display: inline-block;
+            height: 4px;
+            width: 4px;
+            border-radius: 50%;
+            background-color: black;
+            vertical-align: middle;
+        }
+
+        .faxian main>div:nth-child(1)>div:nth-child(1) span:nth-child(3) {
+            font-weight: 900;
+            padding: 0 5px 0 3px;
+        }
+
+        .faxian main>div:nth-child(1)>div:nth-child(1) span:nth-child(3)>i {
+
+            font-size: 16px;
+            color: red;
+            margin-right: 5px;
+        }
+
+        .faxian main>div:nth-child(1)>div:nth-child(1) span:nth-child(4) {
+            display: inline-block;
+            height: 4px;
+            width: 4px;
+            border-radius: 50%;
+            background-color: black;
+            vertical-align: middle;
+        }
+
+        .faxian main>div:nth-child(1)>div:nth-child(1) span:nth-child(5) {
+            display: inline-block;
+            height: 2px;
+            width: 15px;
+            background-color: black;
+            vertical-align: middle;
+        }
+
+        .faxian main>div:nth-child(1)>div:nth-child(2) {
+            text-align: center;
+            font-size: 12px;
+            color: darkgray;
+        }
+
+        .faxian .sang {
+            width: 100%;
+            padding-left: 2%;
+        }
+
+        .sang>div {
+
+            width: 33%;
+            float: left;
+        }
+
+        .sang>div>p:nth-child(1) {
+            width: 50px;
+            padding: 0 2px;
+            background-color: black;
+            color: white;
+            font-size: 12px;
+            margin-left: 8px;
+        }
+
+        .sang>div>img {
+            width: 98%;
+            height: 100px;
+            margin: 0 1%;
+        }
+
+        .sang>div>p:nth-child(3) {
+            font-size: 12px;
+            margin-left: 10px;
+        }
+
+        .sang>div>p:nth-child(4) {
+            font-size: 12px;
+            color: red;
+            margin: 5px 0 5px 12px;
+
+        }
+
+        .sang>div>p:nth-child(4)>s {
+            color: darkgray;
+        }
+
+        .faxian main>div:nth-child(3) {
+            width: 100%;
+            text-align: center;
+            font-size: 12px;
+            color: #6a6a6a;
+            margin: 20px 0;
+            padding-bottom: 20px;
+        }
+
+        /* 订单 */
+        .dingdan {
+            overflow: hidden;
+            background-color: #f5f5f5;
+            height: 740px;
+        }
+
+        .dingdan>div {
+
+            margin: 100px auto;
+            width: 192px;
+            /* height: 250px; */
+            /* background-color: green; */
+        }
+
+        .dingdan>div>img {
+            width: 192px;
+
+        }
+
+        .dingdan>div>div:nth-of-type(1) {
+            width: 147px;
+            height: 20px;
+            margin: 10px auto;
+            color: #6a6a6a;
+            text-align: center;
+        }
+
+        .dingdan>div>div:nth-of-type(2) {
+            text-align: center;
+            background-color: #56d176;
+            color: white;
+            font-size: 15px;
+            width: 96px;
+            height: 19px;
+            padding: 10px;
+            margin: 0 auto;
+        }
+
+        /* 我的那一页 */
+        #red {
+            color: red;
+        }
+
+        #green {
+            color: green;
+        }
+
+        .wode {
+            position: absolute;
+            left: 0;
+            top: 0;
+            /* display: none; */
+            overflow: hidden;
+            width: 100%;
+            height: 740px;
+            background-color: #f5f5f5;
+        }
+
+        /* 头部蓝色部分 */
+        .wode>div:nth-child(1) {
+            width: 100%;
+            height: 106px;
+            background-color: #0af;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .wode .header>div:nth-child(1) {
+            width: 25%;
+            height: 53px;
+        }
+
+        .header>div:nth-child(2) {
+            width: 67%;
+            height: 53px;
+        }
+
+        .header>div:nth-child(3) {
+            width: 8%;
+            height: 53px;
+        }
+
+        .header>div:nth-child(1) img {
+            width: 53px;
+            height: 53px;
+            ;
+            border-radius: 50%;
+            margin: 0 calc(50% - 26.5px);
+        }
+
+        .header>div:nth-child(2) p:nth-child(1) {
+            width: 67%;
+            height: 26.5px;
+            color: white;
+            line-height: 26.5px;
+            font-weight: 900;
+        }
+
+        .header>div:nth-child(2) p:nth-child(2) {
+            width: 67%;
+            height: 26.5px;
+            color: white;
+            font-size: 11px;
+            line-height: 26.5px;
+        }
+
+        .header>div:nth-child(2) p:nth-child(2) i {
+            font-size: 14px;
+            line-height: 26.5px;
+            vertical-align: top;
+            margin: 0 3px;
+        }
+
+        .header>div:nth-child(3) i {
+            line-height: 53px;
+            color: #ddd;
+        }
+
+        /* 红包金币部分 */
+        .wode>div:nth-child(2) {
+            width: 100%;
+            height: 80px;
+            margin-bottom: 10px;
+            background-color: white;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .wode .header2>div {
+            float: left;
+        }
+
+        .wode .header2>div>p {
+            text-align: center;
+            width: 40px;
+            height: 20px;
+            font-size: 14px;
+        }
+
+        .wode .header2>div>p:nth-child(1) {
+            margin: 15px auto 5px auto;
+        }
+
+        .wode .header2>div>p:nth-child(1) b {
+            font-size: 25px;
+        }
+
+        .wode .header2>div>p:nth-child(2) {
+            margin: 0 auto;
+        }
+
+        .wode .header2>div:nth-child(1) {
+            width: 49%;
+            height: 80px;
+            border-right: 1px solid #ddd;
+        }
+
+        .wode .header2>div:nth-child(2) {
+            width: 50%;
+            height: 80px;
+        }
+
+        /* 隐私政策 */
+        .wode>div:nth-last-of-type(1) {
+            width: 100%;
+            height: 90px;
+            margin: 22px 0;
+            color: #0af;
+            text-align: center;
+        }
+
+        /* 六行文字部分 */
+        .wode>p {
+            width: 100%;
+            height: 42px;
+            background-color: white;
+            border-top: 1px solid #ddd;
+            position: relative;
+            color: rgb(51, 51, 51);
+        }
+
+        .wode>p>i:nth-child(1) {
+            margin: 0 15px;
+            color: #0af;
+            line-height: 42px;
+        }
+
+        .wode>p>i:nth-child(2) {
+            position: absolute;
+            right: 10px;
+            line-height: 42px;
+            color: #ddd;
+        }
+
+        .wode>p:nth-of-type(1),
+        .wode>p:nth-of-type(3),
+        .wode>p:nth-of-type(6) {
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* 最下部导航栏 */
+        .footer {
+            width: 100%;
+            height: 50px;
+            position: fixed;
+            top: 689px;
+            text-align: center;
+            background-color: white;
+            border-top: 1px solid #ddd;
+        }
+
+        .footer div {
+            cursor: pointer;
+            float: left;
+            width: 25%;
+            height: 50px;
+        }
+
+        .footer div i {
+            font-size: 20px;
+            width: 90px;
+            height: 20px;
+            margin-top: 10px;
+
+        }
+
+        .footer div p {
+            font-size: 14px;
+            width: 90px;
+            height: 20px;
+            line-height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="souye page">
+        <header>
+            <p>
+                <i class="fa fa-map-marker "></i><span>中原中路郑州市人才市场</span><i class="fa fa-caret-down "></i>
+            </p>
+            <div>
+                <input type="text" placeholder="&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;搜索饿了么商家、商品名称">
+            </div>
+        </header>
+        <main class="main">
+            <div class="clear">
+                <figure>
+                    <img src="首页/a867c870b22bc74c87c348b75528djpeg.png" alt="">
+                    <figcaption>美食</figcaption>
+                </figure>
+                <figure>
+                    <img src="首页/185f7259ebda19e16123884a60ef2jpeg.png" alt="">
+                    <figcaption>晚餐</figcaption>
+                </figure>
+                <figure>
+                    <img src="首页/76a23eb90dada42528bc41499d6f8jpeg.png" alt="">
+                    <figcaption>商超便利</figcaption>
+                </figure>
+                <figure>
+                    <img src="首页/dd7c960f08cdc756b1d3ad54978fdjpeg.png" alt="">
+                    <figcaption>水果</figcaption>
+                </figure>
+                <figure>
+                    <img src="首页/af108e256ebc9f02db599592ae655jpeg.png" alt="">
+                    <figcaption>医药健康</figcaption>
+                </figure>
+                <figure>
+                    <img src="首页/c888acb2c8ba9e0c813f36ec9e90ajpeg.png" alt="">
+                    <figcaption>浪漫鲜花</figcaption>
+                </figure>
+                <figure>
+                    <img src="首页/bceb19258e3264e64fb856722c3c1jpeg.png" alt="">
+                    <figcaption>跑腿代购</figcaption>
+                </figure>
+                <figure>
+                    <img src="首页/432619fb21a40b05cd25d11eca02djpeg.png" alt="">
+                    <figcaption>汉堡披萨</figcaption>
+                </figure>
+                <figure>
+                    <img src="首页/e42997b86b232161a5a16ab813ae8jpeg.png" alt="">
+                    <figcaption>厨房生鲜</figcaption>
+                </figure>
+                <figure>
+                    <img src="首页/696aa5cf9820adada9b11a3d14bf5jpeg.png" alt="">
+                    <figcaption>甜品引用</figcaption>
+                </figure>
+            </div>
+            <div>
+                <div></div>
+                <div></div>
+            </div>
+        </main>
+        <div class="tuijian"><span></span>&emsp;推荐商家&emsp;<span></span></div>
+        <div class="fenlei">
+            <ul class="clear">
+                <li>
+                    综合排序<i class="fa fa-caret-down "></i>
+                </li>
+                <li>距离最近</li>
+                <li>品质联盟</li>
+                <li>筛选<i class="fa  fa-globe"></i></li>
+            </ul>
+        </div>
+
+        <div class="canpin clear">
+            <div>
+                <div>
+                    <div style="opacity: 1;">新店</div>
+                    <img src="首页/457d79f14f8d682d20c584d658a35jpeg.jpg" alt="">
+                </div>
+            </div>
+            <div class="you">
+                <p><i>品牌</i>炒饭大师(嵩山南路店)<b class="moveright">...</b></p>
+                <p><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                        class="fa fa-star"></i><i class="fa fa-star"></i> 4.9 月售87单<b
+                        class="moveright fengniao">蜂鸟专送</b></p>
+                <p>￥20起送|免配送费 <b class="moveright">2.30km&nbsp;|&nbsp;39分钟</b></p>
+                <p><i>炒饭</i><i>品质联盟</i></p>
+                <p><i class="red">减</i>满22减21，满42减26，满65减32<b class="moveright">3个活动&nbsp;<i
+                            class="fa fa fa-caret-down"></i></b>
+                </p>
+                <p><i class="yellow">特</i>特价商品12.8元起</p>
+            </div>
+        </div>
+        <div class="canpin clear">
+            <div>
+                <div>
+                    <div>新店</div>
+                    <img src="首页/a2109274980610deef43ab8a848a3png.jpg" alt="">
+                </div>
+            </div>
+            <div class="you">
+                <p><i class="pinpai">品牌</i>德克士(五一公园店)<b class="moveright">...</b></p>
+                <p><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                        class="fa fa-star"></i><i class="fa fa-star"></i> 4.8 月售865单<b
+                        class="xianshi moveright fengniao">蜂鸟专送</b></p>
+                <p>￥20起送|免配送费 <b class="moveright">1.62km&nbsp;|&nbsp;30分钟</b></p>
+                <p><i>汉堡薯条</i><i>品质联盟</i><i><b class="fa  fa-smile-o"></b>口碑人气好店</i></p>
+                <p><i class="red">减</i>满35减8，满50减25，满80减40<b class="moveright">4个活动&nbsp;<i
+                            class="fa fa fa-caret-down"></i></b>
+                </p>
+                <p><i class="yellow">特</i>特价商品19.9元起</p>
+            </div>
+        </div>
+        <div class="canpin clear">
+            <div>
+                <div>
+                    <div>新店</div>
+                    <img src="首页/bdd1935fdd1c3b3e5041be87af328jpeg.jpg" alt="">
+                </div>
+            </div>
+            <div class="you">
+                <p><i>品牌</i>粥香世家馍菜汤(锦艺店)<b class="moveright">...</b></p>
+                <p><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                        class="fa fa-star"></i><i class="fa fa-star"></i> 4.6 月售3734单<b
+                        class="moveright fengniao">蜂鸟专送</b></p>
+                <p>￥20起送|配送费￥1 <b class="moveright">1.72km&nbsp;|&nbsp;40分钟</b></p>
+                <p><i>粥店</i><i>品质联盟</i></p>
+                <p><i class="red">减</i>满20减14，满39减22，满68减28<b class="moveright">7个活动&nbsp;<i
+                            class="fa fa fa-caret-down"></i></b>
+                </p>
+                <p><i class="lv">首</i>新用户下单立减18元</p>
+            </div>
+        </div>
+        <div class="canpin clear">
+            <div>
+                <div>
+                    <div>新店</div>
+                    <img src="首页/503238ed7710df891786e755654ddjpeg.png" alt="">
+                </div>
+            </div>
+            <div class="you">
+                <p><i>品牌</i>饭饱饱小碗菜<b class="moveright">...</b></p>
+                <p><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                        class="fa fa-star"></i><i class="fa fa-star"></i> 4.5 月售7299单<b
+                        class="moveright fengniao">蜂鸟专送</b></p>
+                <p>￥15起送|配送费￥1.5 <b class="moveright">2.78km&nbsp;|&nbsp;41分钟</b></p>
+                <p><i>川湘菜</i><i>品质联盟</i></p>
+                <p><i class="red">减</i>满27减13，满36减17，满45减25<b class="moveright">3个活动&nbsp;<i
+                            class="fa fa fa-caret-down"></i></b>
+                </p>
+                <p><i class="lv">首</i>新用户下单立减15元</p>
+            </div>
+        </div>
+        <div class="canpin clear">
+            <div>
+                <div>
+                    <div>新店</div>
+                    <img src="首页/70c1c26b5a24ff4cc3ba5e502f86cjpeg.jpg" alt="">
+                </div>
+            </div>
+            <div class="you">
+                <p><i>品牌</i>私房小碗菜(桐柏路店)<b class="moveright">...</b></p>
+                <p><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                        class="fa fa-star"></i><i class="fa fa-star"></i> 4.6 月售3354单<b
+                        class="moveright fengniao">蜂鸟专送</b></p>
+                <p>￥15起送|免配送费 <b class="moveright">1.48km&nbsp;|&nbsp;42分钟</b></p>
+                <p><i>川湘菜</i><i>品质联盟</i></p>
+                <p><i class="red">减</i>满25减12，满40减19，满88减36<b class="moveright">5个活动&nbsp;<i
+                            class="fa fa fa-caret-down"></i></b>
+                </p>
+                <p><i class="lv">首</i>新用户下单立减16元</p>
+            </div>
+        </div>
+        <div class="canpin clear">
+            <div>
+                <div>
+                    <div>新店</div>
+                    <img src="首页/95691fe128057b7b0abf0aeabeb98png.png" alt="">
+                </div>
+            </div>
+            <div class="you">
+                <p><i>品牌</i>晨曦.鲍鱼饭(金商广场店)<b class="moveright">...</b></p>
+                <p><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                        class="fa fa-star"></i><i class="fa fa-star"></i> 4.9 月售542单<b
+                        class="moveright fengniao">蜂鸟专送</b></p>
+                <p>￥20起送|配送费￥7 <b class="moveright">3.54km&nbsp;|&nbsp;42分钟</b></p>
+                <p><i>滋补炖汤</i><i>品质联盟</i></p>
+                <p><i class="red">减</i>满20减10，满88减25，满158减40<b class="moveright">6个活动&nbsp;<i
+                            class="fa fa fa-caret-down"></i></b>
+                </p>
+                <p><i class="yellow">特</i>特价商品1元起</p>
+            </div>
+        </div>
+        <div class="canpin clear">
+            <div>
+                <div>
+                    <div>新店</div>
+                    <img src="首页/7e197ab50486b73217a32207abcafpng.png" alt="">
+                </div>
+            </div>
+            <div class="you">
+                <p><i class="pinpai">品牌</i>米多面多(中原新城店)<b class="moveright">...</b></p>
+                <p><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                        class="fa fa-star"></i><i class="fa fa-star"></i> 4.8 月售913单<b
+                        class="xianshi moveright fengniao">蜂鸟专送</b></p>
+                <p>￥20起送|配送费￥0.5 <b class="moveright">2.19km&nbsp;|&nbsp;31分钟</b></p>
+                <p><i>盖浇饭</i><i>品质联盟</i></p>
+                <p><i class="red">减</i>满20减13，满38减16，满65减30<b class="moveright">5个活动&nbsp;<i
+                            class="fa fa fa-caret-down"></i></b>
+                </p>
+                <p><i class="lv">首</i>新用户下单立减13元</p>
+            </div>
+        </div>
+    </div>
+    <div class="faxian page">
+        <main>
+            <div>
+                <div>
+                    <span></span><span></span>
+                    <span><i class="fa fa-clock-o"></i>限时好礼</span>
+                    <span></span><span></span>
+                </div>
+                <div>金币换豪礼</div>
+            </div>
+            <div class="clear sang">
+                <div>
+                    <p>限时优惠</p>
+                    <img src="adf8ae0fd52a0eb56f4332fb61ac2jpeg.webp" alt="">
+                    <p>3元品质联盟红包</p>
+                    <p><span>90金币</span><s>￥3</s></p>
+                </div>
+                <div>
+                    <p>特价换购</p>
+                    <img src="605a11eae79849240113271dd1b94jpeg.webp" alt="">
+                    <p>数码经络按摩仪</p>
+                    <p><span>9金币</span><s>￥239</s></p>
+                </div>
+                <div>
+                    <p>特价换购</p>
+                    <img src="5c1ca7ceca079926933ca418c9eb7jpeg.webp" alt="">
+                    <p>智能小音箱</p>
+                    <p><span>9金币</span><s>￥129</s></p>
+                </div>
+            </div>
+            <div>查看更多<i class="fa fa-angle-right"></i></div>
+        </main>
+    </div>
+    <div class="dingdan page">
+        <div>
+            <img src="70008646170d1f654e926a2aaa3afpng.png" alt="">
+            <div>登录后查看外卖订单</div>
+            <div>立即登录</div>
+        </div>
+    </div>
+    <div class="wode page">
+        <div class="header">
+            <div><img src="美女 .png" alt=""></div>
+            <div>
+                <p>这是我的用户名</p>
+                <p><i class="fa fa-mobile"></i>131****1581</p>
+            </div>
+            <div><i class="fa fa-angle-right "></i></div>
+        </div>
+        <div class="clear header2">
+            <div>
+                <p id="red"><b>0</b>个</p>
+                <p>红包</p>
+
+            </div>
+            <div>
+                <p id="green"><b>0</b>个</p>
+                <p>金币</p>
+            </div>
+        </div>
+        <p><i class="fa fa-map-marker"></i>我的地址<i class="fa fa-angle-right "></i></p>
+        <p><i id="green" class="fa fa-rmb"></i>金币商城<i class="fa fa-angle-right "></i></p>
+        <p><i id="red" class="fa  fa-gift"></i>分享拿20元现金<i class="fa fa-angle-right "></i></p>
+        <p><i class="fa  fa-headphones"></i>我的客服<i class="fa fa-angle-right "></i></p>
+        <p><i class="fa  fa-etsy "></i>下载饿了么APP<i class="fa fa-angle-right "></i></p>
+        <p><i class="fa  fa-file-text "></i>规则中心<i class="fa fa-angle-right "></i></p>
+        <div>隐私政策</div>
+    </div>
+    <div class="footer clear">
+        <div onclick="pagemove(0)"><i class="fa  fa-home y"></i>
+            <p class="x">首页</p>
+        </div>
+        <div onclick="pagemove(1)"><i class="fa  fa-compass y"></i>
+            <p class="x">发现</p>
+        </div>
+        <div onclick="pagemove(2)"><i class="fa  fa-address-book y"></i>
+            <p class="x">订单</p>
+        </div>
+        <div onclick="pagemove(3)"><i class="fa  fa-user y"></i>
+            <p class="x">我的</p>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    var page = document.getElementsByClassName("page");
+    var y = document.getElementsByClassName("y");
+    var x = document.getElementsByClassName("x");
+    pagemove(0);
+    function pagemove(a) {
+        for (var i = 0; i < 4; i++) {
+            page[i].style.display = "none";
+            y[i].style.opacity = "1";
+            x[i].style.color = "darkgray";
+        }
+        page[a].style.display = "block";
+        y[a].style.opacity = "0";
+        x[a].style.color = "#0af";
+    }
+
+</script>

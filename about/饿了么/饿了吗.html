@@ -16,13 +16,16 @@
         html,
         body {
             width: 100%;
+           
 
         }
 
         body {
+            height: 740px;
             -webkit-user-select: none;
             cursor: pointer;
             position: relative;
+            
         }
 
         .clear::after {
@@ -33,7 +36,7 @@
 
         /* 首页 */
         .souye {
-            width: 100%;
+            width: 360px;
             height: auto;
             margin-bottom: 50px;
         }
@@ -338,6 +341,7 @@
         .you>p:nth-child(5) {
             font-size: 12px;
             color: rgb(102, 102, 102);
+            position: relative;
         }
 
         .you>p:nth-child(6) {
@@ -387,7 +391,7 @@
         /* 发现 */
         .faxian {
             overflow: hidden;
-            width: 100%;
+            width: 360px;
             height: 740px;
             background-color: #f5f5f5;
         }
@@ -512,6 +516,7 @@
             overflow: hidden;
             background-color: #f5f5f5;
             height: 740px;
+            width: 360px;
         }
 
         .dingdan>div {
@@ -561,7 +566,7 @@
             top: 0;
             /* display: none; */
             overflow: hidden;
-            width: 100%;
+            width: 360px;
             height: 740px;
             background-color: #f5f5f5;
         }
@@ -711,10 +716,11 @@
 
         /* 最下部导航栏 */
         .footer {
-            width: 100%;
+            width: 360px;
             height: 50px;
             position: fixed;
-            top: 689px;
+            /* top: 689px; */
+            bottom: 0;
             text-align: center;
             background-color: white;
             border-top: 1px solid #ddd;

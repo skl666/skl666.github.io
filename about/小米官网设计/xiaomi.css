@@ -10,9 +10,23 @@ a:hover{
 .xiaomi{
 	width: 100%;
 }
+
+
 /*首页*/
 .xiaomi div.home{
 	width: 100%;
+}
+/*回到顶部*/
+#phototop{
+	display: block;
+	width: 35rem;
+	height: 40rem;
+	position: fixed;
+	top:630rem;
+	left: 312rem;
+}
+#phototop>img{
+	width: 35rem;
 }
 /*头部*/
 .home header{
@@ -98,7 +112,7 @@ a:hover{
 	padding: 0;
 	display: block;
 	border-bottom: 2px solid rgba(237, 91, 0,0);
-	color: rgb(116, 116, 116);;
+	color: rgb(116, 116, 116);
 }
 .recommendleft>ul>li.active a{
 	border-bottom-color:rgba(237, 91, 0,1) ;
@@ -109,7 +123,7 @@ a:hover{
 .recommendright{
 	box-shadow:-7rem 0 14rem 7rem rgb(242, 242, 242);
 	width: 34rem;
-	height: 27.5rem;
+	height: 29.5rem;
 	line-height: 27.5rem;
 }
 .recommendright div img{
@@ -592,9 +606,9 @@ del.del::before{
 }
 .shopping>.shoppingclassify{
 	width: 360rem;
-	height: calc(100% - 50rem);
+	height: calc(100% - 100rem);
 	margin:0 auto;
-	padding-top: 50rem;
+	padding: 50rem 0;
 	background-color: white;
 }
 /*登录后享受更多优惠*/

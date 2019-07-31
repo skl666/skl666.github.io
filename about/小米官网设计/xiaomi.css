@@ -83,6 +83,7 @@ a:hover{
 	height: 20rem;
 }
 .recommend{
+	overflow: hidden;
 	width: 100%;
 	height: 29.5rem;
     display: flex;
@@ -121,10 +122,11 @@ a:hover{
 	color: rgb(237, 91, 0);
 }
 .recommendright{
-	box-shadow:-7rem 0 14rem 7rem rgb(242, 242, 242);
+	box-shadow:-10rem 0 20rem 10rem rgb(242, 242, 242);
 	width: 34rem;
 	height: 29.5rem;
 	line-height: 27.5rem;
+	z-index: 1;
 }
 .recommendright div img{
 	width: 20rem;
@@ -351,7 +353,7 @@ del.del::before{
 .sell>p:nth-child(3)::before{
 	content:"￥";
 	font-size: 10rem;
-   vertical-align: top;
+    vertical-align: top;
     line-height:19rem;
     color: rgb(234, 98, 91);
 }
@@ -382,7 +384,6 @@ del.del::before{
 .xiaomi div.classify{
 	height: 100%;
 	width: 100%;
-	/*background-color: green;*/
 }
 /*头部导航栏*/
 .topheader>header{
@@ -849,8 +850,6 @@ del.del::before{
 	height: 24rem;
 	margin: 0 auto 8rem auto;
 }
-.section1>div:nth-child(2)>a:hover{
-}
 .section1>div:nth-child(2)>a p{
 	width: 33rem;
 	height: 14rem;
@@ -864,6 +863,9 @@ del.del::before{
 	height: 104rem;
 	margin: 10rem 0;
 }
+.section2>a:nth-child(1){
+	border-bottom:0px !important;
+}
 .section2>a:nth-child(1)>div:nth-child(2),
 .section2>a:nth-child(1)>div:nth-child(3)
 {
@@ -873,6 +875,9 @@ del.del::before{
 .section3{
 	width: 360rem;
 	height: 104rem;
+}
+.section3>a:nth-child(1){
+	border-bottom:0px !important;
 }
 .section3>a:nth-child(1)>div:nth-child(2),
 .section3>a:nth-child(1)>div:nth-child(3)
@@ -892,10 +897,12 @@ del.del::before{
 }
 /*公共部分*/
 .sdiv>a{
+	box-sizing: border-box;
 	display: block;
 	width: 360rem;
 	height: 52rem;
 	color:rgba(0, 0, 0, 0.87) ;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 .sdiv>a>div{
 	float: left;
